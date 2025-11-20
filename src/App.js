@@ -1,26 +1,23 @@
-// import logo from './logo.svg
+import { HashRouter as Router, Routes, Route } from 'react-router-dom';
 import './App.css';
 
-function Header_App(){
-  return (
-    <h1>This is the Header</h1>
-  );
-}
-
-function Footer_App(){
-  return (
-    <h1>This is a Footer</h1>
-  );
-}
+import {Home} from './pages/homePage';
+import {LoginPage} from './pages/loginPage';
+import {RegisterPage} from './pages/registerPage'
+import {ProfilePage} from './pages/profilePage';
+import {DailyActivity} from './pages/dailyActivityPage';
 
 function App() {
   return (
-    
-    <div>
-      <Header_App />
-      <h1>Start of the </h1>
-      <Footer_App />
-    </div>
+    <Router>
+      <Routes>
+        <Route path='/' element={<Home/>}/>
+        <Route path='/login' element={<LoginPage/>}/>
+        <Route path='/register' element={<RegisterPage/>}/>
+        <Route path='/profile' element={<ProfilePage/>}/>
+        <Route path='/daily_activity' element={<DailyActivity/>}/>
+      </Routes>
+    </Router>
   );
 }
 
