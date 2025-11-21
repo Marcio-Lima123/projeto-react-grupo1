@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 import '../styles/navbar.css';
 
 export function NavBar(){
@@ -6,32 +6,40 @@ export function NavBar(){
         <header>
             <div class='ap_container'>
                 <div class='app_logo'>
-                    {/* <img src="#" alt="App_name"></img> */}
+                    <img class='logo_png' src='imgs/Logo.png' alt="logo"></img>
                 </div>
-                <p>Dailio</p>
+                <div class='app_name'>
+                    <h2 class="logo_name">Dailio</h2>
+                </div>
             </div>
             <div class='ac_container'>
-                <Link to='/daily_activity'>Atividades</Link>
-                <Link to='/classificacoes'>Classificações</Link>
+                <div class='route_container'>
+                    <a class='routes route_a' href='/daily_activity'>Atividades</a>
+                    <div class='route_h'></div>
+                </div>
+                <div class='route_container'>
+                    <a class='routes route_a' href='/classificacoes'>Classificações</a>
+                    <div class='route_h'></div>
+                </div>
             </div>
             <div class='us_menu_container'>
                 <div class='us_menu'>
-                    <img src="#" alt="Pfp_img"></img>
-                    <p>UserName</p>
-                    <a href="#dd_menu">Menu H</a>
+                    <img class='user_logo' src="imgs/user.png" alt="Pfp_img"></img>
+                    <p>User</p>
+                    <button class='btn_logs'><img class='logs' src="imgs/menu2.png" alt="menu"></img></button>
                 </div>
-                <div class='dd_menu' target='#dd_menu'>
-                    <div class='menu_tab'>
-                        <img alt="Img "></img>
-                        <a href='/preferencias'>Preferências</a>
-                    </div>
-                    <div class='menu_tab'>
-                        <img alt="Img "></img>
-                        <a href='/configuracoes'>Configurações</a>
-                    </div>
-                    <div class='menu_tab'>
-                        <img alt="Img "></img>
-                        <a href='/sair'>Sair</a>
+                <div class='dd_container'>    
+                    <div class='t_menu'></div>
+                    <div class='dd_menu' target='#dd_menu'>
+                        <div class='menu_tab'>
+                            <a href='/preferencias'><img class='logs_menu' src="imgs/star.png" alt="pref"></img>Preferências</a>
+                        </div>
+                        <div class='menu_tab'>
+                            <a href='/configuracoes'><img class='logs_menu' src="imgs/settings.png" alt="config"></img>Configurações</a>
+                        </div>
+                        <div class='menu_tab'>
+                            <a href='/sair'><img class='logs_menu' src="imgs/log-out.png" alt="sair"></img>Sair</a>
+                        </div>
                     </div>
                 </div>
             </div>

@@ -1,3 +1,20 @@
+/* Font Inder */
+@import url('https://fonts.googleapis.com/css2?family=Inder&display=swap');
+/* link: https://fonts.google.com/share?selection.family=Inder|Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900 
+    font-family: "Inder", sans-serif;
+    font-weight: bold; 
+    font-style: normal; */
+
+
+/* Font Inter */
+@import url('https://fonts.googleapis.com/css2?family=Inder&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+/* link: https://fonts.google.com/share?selection.family=Inder|Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900 
+    font-family: "Inter", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: <weight>;
+    font-style: normal; */
+
+
 header{
     display: flex;
     background-color: #61D095;
@@ -10,64 +27,160 @@ header{
     align-items: center;
     width: 20%;
 
-    margin: 0 20px 0 20px;
+    margin: 0 0 0 20px;
 }
 
-.ac_container > a{
+.user_logo{
+    background-color: white;
+    border-radius: 100%;
+}
+
+.logo_png, .user_logo{
+    height: 50px;
+}
+
+.logs{
+    height: 40px;
+}
+
+.btn_logs{
+    background-color: transparent;
+    border: none;
+
+    cursor: pointer;
+}
+
+.logs_menu{
+    height: 20px;
+}
+
+.app_name{
+    display: flex;
+    align-items: center;
+
+    margin: 0 0 0 5px;
+}
+
+.logo_name{
+    margin: 0;
+    color: #003844;
+
+    font-family: "Inder", sans-serif;
+    font-weight: bold; 
+    font-style: normal;
+}
+
+.route_container{
     margin: 0 5px 0 5px;
+}
+
+.routes{
+    text-decoration: none;
+    font-family: "Inter", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: bold;
+    font-style: normal;
+    color: black;
+}
+
+.route_h{
+    visibility: hidden;
+    height: 4px;
+    background-color: #006c67;
+    border-radius: 5px;
+}
+
+.routes:hover + .route_h{
+    visibility: visible;
 }
 
 .ac_container{
     display: flex;
     flex-direction: row;
     align-items: center;
+    justify-content: center;
     width: 30%;
 }
 
 .us_menu_container{
     display: flex;
-    flex-direction: row;
-    justify-content: space-evenly;
+    flex-direction: column;
+    align-items: end;
     
     width: 50%;
-    height: 60px;
+    height: max-content;
 
-    position: absolute;
-    right: 0px;
+    margin-right: 10px;
 }
 
 .us_menu{
     display: flex;
-    flex-direction: row;
-    justify-content: right;
     align-items: center;
+    height: 60px;
 }
+
+.us_menu > *{
+    margin: 0 0 0 10px;
+}
+
+.dd_container{
+    position: relative;
+    z-index: 1;
+
+    visibility: hidden;
+}
+
+.btn_logs:hover .dd_container{
+    visibility: visible;
+    
+} 
 
 .dd_menu{
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
-
-    position: relative;
-    top: 70px;
-    left: -5%;
     
     width: 160px;
     height: 100px;
 
+    z-index: 0;
+
     background-color: #61D095;
     border: solid 2px #003844;
-    border-radius: 10px;
+    border-radius: 5px;
+}
+
+.t_menu{
+    width: 20px;
+    height: 20px;
+
+    position: relative;
+    right: -135px;
+    top: 10px;
+    z-index: -1;
+
+    rotate: 45deg;
+    background-color: #003844;
 }
 
 .menu_tab{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
     margin: 0 10px 0 10px;
 }
 
 .menu_tab > a{
+    display: flex;
+    align-items: center;
+
     color: black;
 
     text-decoration: none;
     font-weight: bold;
+}
+
+.menu_tab > a > img {
+    margin-right: 5px;
 }
 
