@@ -1,0 +1,117 @@
+
+.info_{
+    display: flex;
+    width: 100%;
+    height: calc(100vh - 80px);
+    background: #F2F2F2;
+    font-family: Arial, sans-serif;
+}
+.info_c {
+    flex: 1;
+    padding: 40px 60px;
+    background: white;
+}
+
+.info_c h1 {
+    margin-bottom: 20px;
+    font-size: 28px;
+}
+
+.info_p {
+    margin-bottom: 25px;
+}
+
+.info_p h3 {
+    margin-bottom: 5px;
+    font-size: 17px;
+}
+
+.info_p p {
+    color: #333;
+}
+
+/*IMAGEM  PERFIL  */
+.profile_pic {
+    border: 2px solid black;
+    width: 65px;
+    height: 65px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.profile_pic img {
+    width: 40px;
+}
+.edit_btn {
+    margin-top: 10px;
+    padding: 10px 18px;
+    background: #3DBD5D;
+    border: none;
+    color: white;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 14px;
+}
+.edit_btn:hover {
+    background: #2E9F4C;
+}
+.info_menu_list li button {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 15px;
+    cursor: pointer;
+    padding: 0;
+    margin-left: 8px;
+    text-align: left;
+}
+.info_menu_list li.active button {
+    font-weight: bold;
+}
+/* editar */
+.info_edit_ {
+    display: flex;
+    width: 100%;
+    min-height: calc(100vh - 70px);
+    background: #ffffff;
+}
+
+.info_edit_c {
+    flex: 1;
+    padding: 40px 60px;
+}
+
+.info_edit_c h1 {
+    margin-bottom: 25px;
+}
+.edit_p{
+    margin-bottom: 25px;
+}
+.edit_p h3 {
+    margin-bottom: 8px;
+}
+.edit_input {
+    width: 260px;
+    padding: 6px 10px;
+    border: 1px solid #c5c5c5;
+    border-radius: 6px;
+    background: #e6f8f1;
+    outline: none;
+}
+.edit_input:focus {
+    border-color: #009b7a;
+}
+/* BOTÃO SALVAR de editar */
+.save_btn {
+    margin-top: 10px;
+    padding: 7px 20px;
+    background: #2eb874;
+    border: none;
+    color: white;
+    border-radius: 6px;
+    cursor: pointer;
+}
+.save_btn:hover {
+    background: #23965c;
+}

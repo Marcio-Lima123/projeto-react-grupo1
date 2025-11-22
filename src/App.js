@@ -1,12 +1,14 @@
 import { HashRouter as Router, Routes, Route } from 'react-router-dom';
 import './App.css';
-import { PreferencesPage } from './pages/PreferencesPage';
+
 import {Home} from './pages/homePage';
 import {LoginPage} from './pages/loginPage';
 import {RegisterPage} from './pages/registerPage'
 import {ProfilePage} from './pages/profilePage';
 import {DailyActivity} from './pages/dailyActivityPage';
 import { Layout } from './Layout';
+import { PreferencesPage } from './pages/PreferencesPage';
+import { InformationPage, InformationEditPage } from './pages/InformationPage';
 
 
 function App() {
@@ -20,6 +22,8 @@ function App() {
           <Route path='/profile' element={<ProfilePage/>}/>
           <Route path='/daily_activity' element={<DailyActivity/>}/>
           <Route path="/preferencias" element={<PreferencesPage/>}/>
+          <Route path="/informacao" element={<InformationPage/>}/>
+          <Route path="/informacao/editar" element={<InformationEditPage />} />
         </Route>
       </Routes>
     </Router>
