@@ -1,4 +1,4 @@
-// import { Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import '../styles/navbar.css';
 
 export function NavBar(){
@@ -26,22 +26,24 @@ export function NavBar(){
                 <div class='us_menu'>
                     <img class='user_logo' src="imgs/user.png" alt="Pfp_img"></img>
                     <p>User</p>
-                    <button class='btn_logs'><img class='logs' src="imgs/menu2.png" alt="menu"></img></button>
-                </div>
-                <div class='dd_container'>    
-                    <div class='t_menu'></div>
-                    <div class='dd_menu' target='#dd_menu'>
-                        <div class='menu_tab'>
-                            <a href='/preferencias'><img class='logs_menu' src="imgs/star.png" alt="pref"></img>Preferências</a>
-                        </div>
-                        <div class='menu_tab'>
-                            <a href='/configuracoes'><img class='logs_menu' src="imgs/settings.png" alt="config"></img>Configurações</a>
-                        </div>
-                        <div class='menu_tab'>
-                            <a href='/sair'><img class='logs_menu' src="imgs/log-out.png" alt="sair"></img>Sair</a>
+                    <div class='dd_menu_container'>
+                        <button class='btn_logs'><img class='logs' src="imgs/menu2.png" alt="menu"></img></button>
+                        <div class='dd_container'>    
+                            <div class='t_menu'></div>
+                            <div class='dd_menu' target='#dd_menu'>
+                                <div class='menu_tab'>
+                                    <a target="blank" href='#/preferencias'><img class='logs_menu' src="imgs/star.png" alt="pref"></img>Preferências</a>
+                                </div>
+                                <div class='menu_tab'>
+                                    <Link to='/configuracoes'><img class='logs_menu' src="imgs/settings.png" alt="config"></img>Configurações</Link>
+                                </div>
+                                <div class='menu_tab'>
+                                    <Link to='/sair'><img class='logs_menu' src="imgs/log-out.png" alt="sair"></img>Sair</Link>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                </div>
+                    </div>
             </div>
         </header>
         

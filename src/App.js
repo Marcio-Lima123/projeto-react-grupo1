@@ -19,7 +19,7 @@ function App() {
           <Route path='/register' element={<RegisterPage/>}/>
           <Route path='/profile' element={<ProfilePage/>}/>
           <Route path='/daily_activity' element={<DailyActivity/>}/>
-          <Route path="/preferencias" element={<PreferencesPage />} />
+          <Route path="/preferencias" element={<PreferencesPage/>}/>
         </Route>
       </Routes>
     </Router>
