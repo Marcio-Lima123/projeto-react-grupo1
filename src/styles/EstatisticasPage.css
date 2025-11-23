@@ -1,0 +1,58 @@
+.est_header {
+  margin-bottom: 20px;
+}
+.est_info p {
+  margin: 0;
+}
+.est_number {
+  font-size: 22px;
+  font-weight: bold;
+}
+.est_subtitle {
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+.atividades_grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+{/*ex atividade */}
+.content_container{
+    margin: 20px;
+    height: 80vh;
+}
+.atividade_container{
+    width: 260px;
+    height: 150px;
+    background-color: #006c67;
+    border: solid 3px #003844;
+    border-radius: 5px;
+}
+.at_c{
+    margin: 7px;
+    font-weight: 600;
+    color: white;
+}
+.at_c > *{
+    height: 50%;
+    margin: 0;
+}
+.etc_container > *{
+    height: 50%;
+}
+.gc_container, .etc_f_container{
+    display: flex;
+    flex-direction: row;
+    margin: 0 5px 0 0;
+}
+.gc_container > *{
+    height: 20px;
+    margin: 0 5px 0 0;
+}
+.data_atividade {
+  width: 90%;
+  height: 10px;
+  color: white;
+  display: flex;
+}

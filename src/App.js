@@ -9,7 +9,7 @@ import {DailyActivity} from './pages/dailyActivityPage';
 import { Layout } from './Layout';
 import { PreferencesPage } from './pages/PreferencesPage';
 import { InformationPage, InformationEditPage } from './pages/InformationPage';
-
+import { EstatisticasPage } from './pages/EstatisticasPage';
 
 function App() {
   return (
@@ -24,6 +24,7 @@ function App() {
           <Route path="/preferencias" element={<PreferencesPage/>}/>
           <Route path="/informacao" element={<InformationPage/>}/>
           <Route path="/informacao/editar" element={<InformationEditPage />} />
+          <Route path="/estatistica" element={<EstatisticasPage/>}/>
         </Route>
       </Routes>
     </Router>
