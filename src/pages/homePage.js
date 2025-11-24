@@ -4,7 +4,7 @@ export function Home(){
     return (
         <div class='content_container'>
             <div >
-                <h1>Atividades para Hoje (js quantidade Atividades)</h1> 
+                <h1 class="titulos-grandes">Atividades para Hoje (nºAtividades)</h1> 
                 <div>
                     {/* Java Script para pegar as coisas da base de dados e criar os elementos no html*/}
                     <div class='atividade_container'>
@@ -23,8 +23,8 @@ export function Home(){
                                         <p>Few to no challenges</p>
                                     </div>
                                 </div>
-                                <div class='btn_container'>
-                                    <button type='submit'>Concluir</button>
+                                <div class="btn_container">
+                                    <button type='submit' class="comic-button">Concluir Atividade</button>
                                 </div>
                             </div>
                         </div>
@@ -32,13 +32,13 @@ export function Home(){
                 </div>
             </div >
             <div >
-                <h1>Atividades Recomendadas</h1>
+                <h1 class="titulos-grandes">Atividades Recomendadas</h1>
                 <div>
 
                 </div>
             </div >
             <div >
-                <h1>Outras Atividades</h1>
+                <h1 class="titulos-grandes">Outras Atividades</h1>
                 <div>
                 
                 </div>
