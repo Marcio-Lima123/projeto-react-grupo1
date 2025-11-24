@@ -4,7 +4,7 @@ export function Home() {
     return (
         <div class='content_container'>
             <div >
-                <h1>Atividades para Hoje (js quantidade Atividades)</h1>
+                <h1 class="titulos-grandes">Atividades para Hoje (nºAtividades)</h1> 
                 <div>
                     {/* Java Script para pegar as coisas da base de dados e criar os elementos no html*/}
                     <div class='atividade_container'>
@@ -12,33 +12,33 @@ export function Home() {
                             <div class='at_name'>
                                 <p>Tedasdausbdiabsdadiyiausbdabsidbuabsidbaiduabsudasdxt</p>
                             </div>
-                        </div>
-                        <div class='at_c'>
-                            <div class='etc_f_container'>
-                                <div class='gc_container'>
-                                    <img src='/imgs/people_white.png' alt='people'></img>
-                                    <p>1</p>
+                            <div class='etc_container'>
+                                <div class='etc_f_container'>
+                                    <div class='gc_container'>
+                                        <img src='/imgs/people_white.png' alt='people'></img>
+                                        <p>1</p>
+                                    </div>
+                                    <div class='gc_container'>
+                                        <img src='/imgs/difficulties_white.png' alt='hard_person'></img>
+                                        <p>Few to no challenges</p>
+                                    </div>
                                 </div>
-                                <div class='gc_container'>
-                                    <img src='/imgs/difficulties_white.png' alt='hard_person'></img>
-                                    <p>Few to no challenges</p>
+                                <div class="btn_container">
+                                    <button type='submit' class="comic-button">Concluir Atividade</button>
                                 </div>
-                            </div>
-                            <div class='btn_container'>
-                                <button type='submit'>Concluir</button>
                             </div>
                         </div>
                     </div>
                 </div>
             </div >
             <div >
-                <h1>Atividades Recomendadas</h1>
+                <h1 class="titulos-grandes">Atividades Recomendadas</h1>
                 <div>
 
                 </div>
             </div >
             <div >
-                <h1>Outras Atividades</h1>
+                <h1 class="titulos-grandes">Outras Atividades</h1>
                 <div>
 
                 </div>

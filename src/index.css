@@ -11,3 +11,10 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+@font-face {
+  font-family: "Rantaro";
+  src: local("Rantaro"),
+    url("./fonts/Rantaro.otf") format("opentype");
+  font-weight: normal;
+}

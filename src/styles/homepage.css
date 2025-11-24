@@ -39,6 +39,7 @@
     white-space: normal;
     height: 55px;
     margin-bottom: 0;
+    position: flex;
 }
 
 .gc_container, .etc_f_container{
@@ -53,10 +54,60 @@
 }
 
 .btn_container > button{
-    width: 100%;
-    height: 20px;
+    display: flex;
+
+    width: 82%;
+    height: 40px;
+    /*align-items: center;*/
+    justify-content: center;
+    margin: auto;
 }
 
+.comic-button {
+  display: inline-block;
+  padding: 5px 10px;
+  font-size: 20px;
+  font-weight: bold;
+  text-align: center;
+  text-decoration: none;
+  color: #fff;
+  background-color: #61D095;
+  border: 2px solid #000;
+  border-radius: 10px;
+  box-shadow: 5px 5px 0px #000;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
 
+.comic-button:hover {
+  background-color: #fff;
+  color: #004a51;
+  border: 2px solid #013944;
+  box-shadow: 5px 5px 0px #002b13;
+}
 
+.comic-button:active {
+  background-color: #003844;
+  box-shadow: none;
+  transform: translateY(4px);
+}
 
+.titulos-grandes {
+    font-family: "Rantaro";
+    font-size: 80px;
+    font-weight:normal;
+}
+
+.content_container {
+    margin: 0 !important;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle at 25% 25%, #a3b1c6 15%, transparent 15%),
+    radial-gradient(circle at 75% 75%, #a3b1c6 15%, transparent 15%);
+  background-size: 10px 10px;
+  background-color: #ffffff;
+}
+
+h1{
+    margin: 0;
+}
