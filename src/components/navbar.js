@@ -1,24 +1,26 @@
 import '../styles/navbar.css';
 
-export function NavBar(){
+export function NavBar() {
     return (
         <header>
-            <div class='ap_container'>
-                <div class='app_logo'>
-                    <img class='logo_png' src='imgs/Logo.png' alt="logo"></img>
+            <div class='left_side'>
+                <div class='ap_container'>
+                    <div class='app_logo'>
+                        <img class='logo_png' src='imgs/Logo.png' alt="logo"></img>
+                    </div>
+                    <div class='app_name'>
+                        <h2 class="logo_name">Dailio</h2>
+                    </div>
                 </div>
-                <div class='app_name'>
-                    <h2 class="logo_name">Dailio</h2>
-                </div>
-            </div>
-            <div class='ac_container'>
-                <div class='route_container'>
-                    <a class='routes route_a' href='/daily_activity'>Atividades</a>
-                    <div class='route_h'></div>
-                </div>
-                <div class='route_container'>
-                    <a class='routes route_a' href='/classificacoes'>Classificações</a>
-                    <div class='route_h'></div>
+                <div class='ac_container'>
+                    <div class='route_container'>
+                        <a class='routes route_a' href='/'>Atividades</a>
+                        <div class='route_h'></div>
+                    </div>
+                    <div class='route_container'>
+                        <a class='routes route_a' href='/classificacoes'>Classificações</a>
+                        <div class='route_h'></div>
+                    </div>
                 </div>
             </div>
             <div class='us_menu_container'>
@@ -28,7 +30,7 @@ export function NavBar(){
                     <p>User</p>
                     <div class='dd_menu_container'>
                         <button class='btn_logs'><img class='logs' src="imgs/menu2.png" alt="menu"></img></button>
-                        <div class='dd_container'>    
+                        <div class='dd_container'>
                             <div class='t_menu'></div>
                             <div class='dd_menu' target='#dd_menu'>
                                 <div class='menu_tab'>
@@ -40,9 +42,9 @@ export function NavBar(){
                             </div>
                         </div>
                     </div>
-                    </div>
+                </div>
             </div>
         </header>
-        
+
     );
 }

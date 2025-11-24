@@ -1,7 +1,11 @@
+import '../styles/login.css'
+
 export function LoginPage(){
     return (
-        <>
-            This is the Login page
-        </>
+        <div class='bg_container'>
+            <div class='form_container'>
+
+            </div>
+        </div>
     );
 }

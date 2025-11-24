@@ -21,11 +21,16 @@ header{
     height: 60px;
 }
 
+.left_side{
+    display: flex;
+    width: 50%
+}
+
 .ap_container{
     display: flex;
     flex-direction: row;
     align-items: center;
-    width: 20%;
+
 
     margin: 0 0 0 20px;
 }
@@ -110,7 +115,8 @@ header{
     flex-direction: row;
     align-items: center;
     justify-content: center;
-    width: 30%;
+
+    margin-left: 10px;
 }
 
 .us_menu_container{
