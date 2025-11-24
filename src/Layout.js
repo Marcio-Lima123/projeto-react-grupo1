@@ -1,4 +1,6 @@
 import { NavBar } from "./components/navbar";
+import { SubNavbar } from "./components/subnavbar";
+
 import { Outlet } from "react-router-dom";
 
 export function Layout(){
@@ -10,4 +12,16 @@ export function Layout(){
             </main>
         </>
     )
+}
+
+export function Layout2(){
+    return(
+        <>
+            <NavBar/>
+            <SubNavbar/>
+            <main>
+                <Outlet/>
+            </main>
+        </>
+    );
 }

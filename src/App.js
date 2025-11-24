@@ -1,10 +1,11 @@
 import { HashRouter as Router, Routes, Route } from 'react-router-dom';
 import './App.css';
 
-import {Home} from './pages/homePage';
-import {LoginPage} from './pages/loginPage';
-import {RegisterPage} from './pages/registerPage'
-import { Layout } from './Layout';
+import { Layout, Layout2 } from './Layout';
+
+import { Home } from './pages/homePage';
+import { LoginPage } from './pages/loginPage';
+import { RegisterPage } from './pages/registerPage'
 import { PreferencesPage } from './pages/PreferencesPage';
 import { InformationPage, InformationEditPage } from './pages/InformationPage';
 import { EstatisticasPage } from './pages/EstatisticasPage';
@@ -13,16 +14,19 @@ function App() {
   return (
     <Router>
       <Routes>
-        <Route element={<Layout/>}>
-          <Route path='/' element={<Home/>}/>
-          <Route path='/register' element={<RegisterPage/>}/>
-          <Route path="/preferencias" element={<PreferencesPage/>}/>
-          <Route path="/informacao" element={<InformationPage/>}/>
-          <Route path="/informacao/editar" element={<InformationEditPage />} />
-          <Route path="/estatistica" element={<EstatisticasPage/>}/>
+        <Route path='/login' element={<LoginPage />} />
+        <Route path='/register' element={<RegisterPage />} />
+        <Route element={<Layout />}>
+          <Route path='/' element={<Home />} />
+          {/* <Route path='/classificacao' element={<ClassificacaoPage />} /> */}
+          {/* <Route path="/informacao" element={<InformationPage />} /> */}
         </Route>
-        <Route path='/login' element={<LoginPage/>}/>
-
+          <Route element={<Layout2 />}>
+            <Route path="/informacao" element={<InformationPage />} />
+            <Route path="/informacao/editar" element={<InformationEditPage />} />
+            <Route path="/preferencias" element={<PreferencesPage />} />
+            <Route path="/estatistica" element={<EstatisticasPage />} />
+          </Route>
       </Routes>
     </Router>
   );

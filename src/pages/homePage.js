@@ -10,7 +10,7 @@ export function Home() {
                     <div class='atividade_container'>
                         <div class='at_c'>
                             <div class='at_name'>
-                                <p>Tedasdausbdiabsdadiyiausbdabsidbuabsidbaiduabsudasdxt</p>
+                                <p>Atividade 1 - Descrição da atvidade</p>
                             </div>
                         </div>
                         <div class='at_c'>
