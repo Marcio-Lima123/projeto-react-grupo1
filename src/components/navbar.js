@@ -14,11 +14,11 @@ export function NavBar() {
                 </div>
                 <div class='ac_container'>
                     <div class='route_container'>
-                        <a class='routes route_a' href='/'>Atividades</a>
+                        <button class="comic-button"><a class='routes route_a' href='/'>Atividades</a></button>
                         <div class='route_h'></div>
                     </div>
                     <div class='route_container'>
-                        <a class='routes route_a' href='/classificacoes'>Classificações</a>
+                        <button class="comic-button"><a class='routes route_a' href='/classificacoes'>Classificações</a></button>
                         <div class='route_h'></div>
                     </div>
                 </div>
@@ -27,7 +27,7 @@ export function NavBar() {
                 <div class='us_menu'>
                     <img class='user_logo' src="imgs/user.png" alt="Pfp_img"></img>
                     {/* adicionar javascript para ir buscar o log in */}
-                    <p>User</p>
+                    <p class="logo_name">Username</p>
                     <div class='dd_menu_container'>
                         <button class='btn_logs'><img class='logs' src="imgs/menu2.png" alt="menu"></img></button>
                         <div class='dd_container'>

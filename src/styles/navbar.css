@@ -206,3 +206,31 @@ header{
     margin-right: 5px;
 }
 
+.comic-button {
+  display: inline-block;
+  padding: 5px 10px;
+  font-size: 20px;
+  font-weight: bold;
+  text-align: center;
+  text-decoration: none;
+  color: #fff;
+  background-color: #61D095;
+  border: 2px solid #000;
+  border-radius: 10px;
+  box-shadow: 5px 5px 0px #000;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.comic-button:hover {
+  background-color: #fff;
+  color: #004a51;
+  border: 2px solid #013944;
+  box-shadow: 5px 5px 0px #002b13;
+}
+
+.comic-button:active {
+  background-color: #006c66;
+  box-shadow: none;
+  transform: translateY(4px);
+}
