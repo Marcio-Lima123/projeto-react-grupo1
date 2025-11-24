@@ -32,12 +32,14 @@ export function Home() {
                 </div>
             </div >
             <div >
+                <p>Não gostou das suas atividades? nós também Recomendamos:</p>
                 <h1 class="titulos-grandes">Atividades Recomendadas</h1>
                 <div>
 
                 </div>
             </div >
             <div >
+                <p>Além das atividades anteriores, que tal exprimentar algo diferente:</p>
                 <h1 class="titulos-grandes">Outras Atividades</h1>
                 <div>
 
