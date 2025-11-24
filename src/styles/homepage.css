@@ -13,21 +13,32 @@
 }
 
 .at_c{
-    margin: 7px;
+    display: flex;
+    flex-direction: column;
+    height: 50% !important;
 
-    font-weight: 600;
+    margin: 0 7px 0 7px !important;
+
+    font-weight: 600 !important;
 
     color: white;
 }
 
 .at_c > *{
-    /* width: inherit; */
-    height: 50%;
     margin: 0;
 }
 
-.etc_container > *{
-    height: 50%;
+.at_name{
+    width: 253px;
+    height: 75px !important;
+}
+
+.at_name > p {
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    white-space: normal;
+    height: 55px;
+    margin-bottom: 0;
 }
 
 .gc_container, .etc_f_container{
