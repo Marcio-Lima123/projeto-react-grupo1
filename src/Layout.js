@@ -18,8 +18,8 @@ export function Layout2(){
     return(
         <>
             <NavBar/>
-            <SubNavbar/>
             <main>
+                <SubNavbar/>
                 <Outlet/>
             </main>
         </>
