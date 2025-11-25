@@ -12,17 +12,17 @@ export function LoginPage() {
                 <form class='log_container'>
                     <div class='ep_container'>
                         <label>Email</label>
-                        <input value={'exemplo@gmail.com'}></input>
+                        <input class='ipt_ep' placeholder={'exemplo@gmail.com'}></input>
                     </div>
                     <div class='ep_container'>
                         <label>Password</label>
-                        <input value={'password'}></input>
+                        <input class='ipt_ep' placeholder={'password'}></input>
                     </div>
                     <div class='btn_logIn ep_container'>
-                        <input value={'Entrar'}></input>
+                        <input class='btn_enter' type='submit' value={'Entrar'}></input>
                         <div class='reg_container'>
                             <label>Não tem conta?</label>
-                            <input type='submit' value={'Registar'}></input>
+                            <input class='btn_enter' type='button' value={'Registar'}  ></input>
                         </div>
                     </div>
                 </form>
