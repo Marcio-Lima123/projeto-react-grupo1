@@ -1,0 +1,80 @@
+.classs_conteiner {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.clas_podio {
+    width: 250%;
+    display: flex;
+    justify-content: center;
+    gap: 120px;
+    margin-top: 90px;
+}
+.podio_1 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transform: translateY(-40px); /* para subir */
+}
+.podio_1 h3 {
+    font-size: 2rem;
+    margin: 10px 0;
+}
+.podio_1 .trofeu {
+    width: 110px;
+}
+.podio_2, .podio_3 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transform: translateY(20px);
+}
+.podio_2 h4, .podio_3 h5 {
+    font-size: 1.6rem;
+}
+.podio_2 .trofeu, .podio_3 .trofeu {
+    width: 90px;
+}
+.nome {
+    font-size: 1.5rem;
+    margin-top: 1px;
+}
+.total {
+    font-size: 1.1rem;
+    margin-top: 1px;
+    color: #444;
+}
+/*  ++ */
+.class_atv {
+    width: 70%;
+    max-width: 1500px;
+}
+.class_atv h6 {
+    font-size: 2rem;
+    text-align: center;
+    margin-bottom: 30px;
+}
+.titulos {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    font-weight: bold;
+    font-size: 1.3rem;
+    margin-bottom: 10px;
+}
+.linha {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    align-items: center;
+    border-top: 2px solid black;
+    padding: 18px 0;
+    font-size: 1.0rem;
+}
+.user_linha {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+.user_linha img {
+    width: 40px;
+}

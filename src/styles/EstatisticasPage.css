@@ -12,17 +12,17 @@
   margin-top: 15px;
   margin-bottom: 15px;
 }
-.atividades_grid {
+.atividad_grid {
   display: flex;
   flex-wrap: wrap;
   gap: 20px;
 }
 /* {ex atividade} */
-.content_container{
+.conten_container{
     margin: 20px;
     height: 80vh;
 }
-.atividade_container{
+.atividad_container{
     width: 260px;
     height: 150px;
     background-color: #006c67;
@@ -30,16 +30,29 @@
     border-radius: 5px;
 }
 .at_c{
-    margin: 7px;
-    font-weight: 600;
+    display: flex;
+    flex-direction: column;
+    height: 50% !important;
+
+    margin: 0 7px 0 7px !important;
+
+    font-weight: 600 !important;
+
     color: white;
 }
 .at_c > *{
-    height: 50%;
     margin: 0;
 }
-.etc_container > *{
-    height: 50%;
+.at_name{
+    width: 253px;
+    height: 75px !important;
+}
+.at_name > p {
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    white-space: normal;
+    height: 55px;
+    margin-bottom: 0;
 }
 .gc_container, .etc_f_container{
     display: flex;

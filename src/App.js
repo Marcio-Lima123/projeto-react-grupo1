@@ -9,6 +9,7 @@ import { RegisterPage } from './pages/registerPage'
 import { PreferencesPage } from './pages/PreferencesPage';
 import { InformationPage, InformationEditPage } from './pages/InformationPage';
 import { EstatisticasPage } from './pages/EstatisticasPage';
+import { ClassificacaoPage } from './pages/ClassificacaoPage';
 
 function App() {
   return (
@@ -18,7 +19,7 @@ function App() {
         <Route path='/register' element={<RegisterPage />} />
         <Route element={<Layout />}>
           <Route path='/' element={<Home />} />
-          {/* <Route path='/classificacao' element={<ClassificacaoPage />} /> */}
+          <Route path='/classificacao' element={<ClassificacaoPage />} />
           {/* <Route path="/informacao" element={<InformationPage />} /> */}
         </Route>
           <Route element={<Layout2 />}>
