@@ -22,7 +22,8 @@ export function LoginPage() {
                         <input class='btn_enter' type='submit' value={'Entrar'}></input>
                         <div class='reg_container'>
                             <label>Não tem conta?</label>
-                            <input class='btn_enter' type='button' value={'Registar'}  ></input>
+                            <a class='btn_enter' href='#/register'>Registar</a>
+                            {/* <input class='btn_enter' type='button' value={'Registar'}></input> */}
                         </div>
                     </div>
                 </form>

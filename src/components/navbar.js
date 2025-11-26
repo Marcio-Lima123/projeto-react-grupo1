@@ -18,7 +18,7 @@ export function NavBar() {
                         <div class='route_h'></div>
                     </div>
                     <div class='route_container'>
-                        <button class="comic-button"><a class='routes route_a' href='/classificacoes'>Classificações</a></button>
+                        <button class="comic-button"><a class='routes route_a' href='#/classificacao'>Classificações</a></button>
                         <div class='route_h'></div>
                     </div>
                 </div>
@@ -37,7 +37,7 @@ export function NavBar() {
                                     <a href='#/informacao'><img class='logs_menu' src="imgs/settings.png" alt="config"></img>Configurações</a>
                                 </div>
                                 <div class='menu_tab'>
-                                    <a href='#/sair'><img class='logs_menu' src="imgs/log-out.png" alt="sair"></img>Sair</a>
+                                    <a href='#/login'><img class='logs_menu' src="imgs/log-out.png" alt="sair"></img>Sair</a>
                                 </div>
                             </div>
                         </div>

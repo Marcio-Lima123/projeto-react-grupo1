@@ -12,7 +12,7 @@ export function SubNavbar(){
                     <a href="#/preferencias"><img src='/imgs/star.png' alt=''></img> Preferências</a>
                 </div>
                 <div class='link_box'>
-                    <a href="#/estatisticas"><img src='/imgs/' alt=''></img> Estatisticas</a>
+                    <a href="#/estatistica"><img src='/imgs/' alt=''></img> Estatisticas</a>
                 </div>
             </nav>
         </div>

@@ -85,7 +85,12 @@
     border: 0;
     border-radius: 5px;
 
+    text-decoration: none;
+    color: black;
+
     font-weight: bold;
+
+    cursor: pointer;
 }
 
 .ipt_ep{
