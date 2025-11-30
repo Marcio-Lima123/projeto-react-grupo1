@@ -1,9 +1,7 @@
-
 .info_{
     display: flex;
-    width: 100%;
-    height: calc(100vh - 80px);
-    background: #F2F2F2;
+    flex-direction: column;
+    padding: 20px 0.5px ;
     font-family: Arial, sans-serif;
 }
 .info_c {
@@ -11,25 +9,20 @@
     padding: 40px 60px;
     background: white;
 }
-
 .info_c h1 {
     margin-bottom: 20px;
     font-size: 28px;
 }
-
 .info_p {
     margin-bottom: 25px;
 }
-
 .info_p h3 {
     margin-bottom: 5px;
     font-size: 17px;
 }
-
 .info_p p {
     color: #333;
 }
-
 /*IMAGEM  PERFIL  */
 .profile_pic {
     border: 2px solid black;

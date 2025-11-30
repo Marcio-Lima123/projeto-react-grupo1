@@ -28,7 +28,6 @@ export function InformationPage() {
     }, []);
     return (
         <div className="info_">
-
             {/* informacao*/}
             <section className="info_c">
                 <h1>Informações</h1>
