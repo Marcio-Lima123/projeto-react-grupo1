@@ -19,8 +19,12 @@
 }
 /* {ex atividade} */
 .conten_container{
-    margin: 20px;
-    height: 80vh;
+    padding: 30px 50px;
+    font-family: Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    box-sizing: border-box;
 }
 .atividad_container{
     width: 260px;
