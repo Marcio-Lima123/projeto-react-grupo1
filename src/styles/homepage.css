@@ -9,12 +9,29 @@ h1{
 
 .big-tittles {
     font-family: "Rantaro";
+    font-size: 140px;
+    font-weight:normal;
+    text-align: center;
+}
+.medium-tittles {
+    margin: 5px;
+    font-family: "Rantaro";
     font-size: 80px;
     font-weight:normal;
+    text-align: left;
 }
+
 .small-tittles {    
-    font-size: 20px;
+    font-family: "Rantaro";
+    font-size: 40px;
     font-weight:normal;
+    text-align: center;
+}
+
+.small-tittles-normal {    
+    font-size: 40px;
+    font-weight:normal;
+    text-align: center;
 }
 
 .container-activities{
@@ -28,9 +45,53 @@ h1{
     height: 100%;
 }
 
+.green_background{
+    height: 500px;
+    display: flex;
+    align-items: center;
+    background-color: #61D095;
+    backface-visibility: visible;
+}
+
 .activity_bullet_list{
-    margin: 5%;
+    margin: 10px 5% 0;
     font-size: 30px;
+    display: flex;
+    justify-content: center;
+}
+.activity_bullet_list img{
+    width: 750px;
+    height: 750px;
+}
+.activity_bullet_list a{
+    text-decoration: none;
+}
+
+.activity_bullet_list a:visited{
+    color: transparent;
+}
+.percentages_homepage{
+    padding: 10px;
+    margin: 5px 5% 0;
+    font-size: 30px;
+    display: flex;
+    justify-content: center;
+}
+.percentages_homepage p{
+    margin:0;
+    font-size: 70px;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+}
+.percentages_homepage h1{
+    font-weight: normal;
+    margin:0 5% 0;
+    text-align: center;
+    font-size: 40px;
+    display: flex;
+    justify-content: center;
+    font-family: "Rantaro";
 }
 
 .activity{

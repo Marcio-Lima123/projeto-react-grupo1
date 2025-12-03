@@ -73,7 +73,7 @@ header{
 .app_name{
     display: flex;
     align-items: center;
-
+    font-family: "Rantaro";
     margin: 0 0 0 5px;
 }
 
