@@ -14,11 +14,11 @@ export function NavBar() {
                 </div>
                 <div class='ac_container'>
                     <div class='route_container'>
-                        <button class="comic-button"><a class='routes route_a' href='/'>Atividades</a></button>
+                        <a class='routes route_a' href='/'><button class="comic-button">Atividades</button></a>
                         <div class='route_h'></div>
                     </div>
                     <div class='route_container'>
-                        <button class="comic-button"><a class='routes route_a' href='#/classificacao'>Classificações</a></button>
+                        <a class='routes route_a' href='#/classificacao'><button class="comic-button">Classificações</button></a>
                         <div class='route_h'></div>
                     </div>
                 </div>

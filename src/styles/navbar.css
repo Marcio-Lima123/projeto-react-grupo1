@@ -102,7 +102,6 @@ header{
 .route_h{
     visibility: hidden;
     height: 4px;
-    background-color: #006c67;
     border-radius: 5px;
 }
 

@@ -1,16 +1,101 @@
-.content_container{
-    margin: 20px;
-    height: 80vh;
+main{
+    margin-top:  0;
+    overflow: auto;
 }
 
-.atividade_container{
+h1{
+    margin: 0;
+}
+
+.big-tittles {
+    font-family: "Rantaro";
+    font-size: 80px;
+    font-weight:normal;
+}
+.small-tittles {    
+    font-size: 20px;
+    font-weight:normal;
+}
+
+.container-activities{
+    display: flex;
+    justify-content: center;
+}
+
+.content_container{
+    margin: 20x;
+    width: 100%;
+    height: 100%;
+}
+
+.activity_bullet_list{
+    margin: 5%;
+    font-size: 30px;
+}
+
+.activity{
     width: 260px;
     height: 150px;
-
     background-color: #006c67;
     border: solid 3px #003844;
     border-radius: 5px;
+    margin: 10px;
 }
+
+.image-homepage{
+    width: 100%;
+    height: 100%;
+}
+
+.hero-image {
+  height: 40rem;
+  width: 100%;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.5)), url("../../public/imgs/atividade.jpeg");
+  background-size: 2000px;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+/* Place text in the middle of the image */
+.hero-text {
+  text-align: center;
+  position: relative;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+}
+
+/* Botão com animação */
+.comic-button {
+  display: inline-block;
+  padding: 5px 10px;
+  font-size: 20px;
+  font-weight: bold;
+  text-align: center;
+  text-decoration: none;
+  color: #fff;
+  background-color: #61D095;
+  border: 2px solid #000;
+  border-radius: 10px;
+  box-shadow: 5px 5px 0px #000;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.comic-button:hover {
+  background-color: #fff;
+  color: #004a51;
+  border: 2px solid #013944;
+  box-shadow: 5px 5px 0px #002b13;
+}
+
+.comic-button:active {
+  background-color: #003844;
+  box-shadow: none;
+  transform: translateY(4px);
+}
+/* tudo para baixo não foi feito pelo Tiago */
 
 .at_c{
     display: flex;
@@ -61,53 +146,4 @@
     /*align-items: center;*/
     justify-content: center;
     margin: auto;
-}
-
-.comic-button {
-  display: inline-block;
-  padding: 5px 10px;
-  font-size: 20px;
-  font-weight: bold;
-  text-align: center;
-  text-decoration: none;
-  color: #fff;
-  background-color: #61D095;
-  border: 2px solid #000;
-  border-radius: 10px;
-  box-shadow: 5px 5px 0px #000;
-  transition: all 0.3s ease;
-  cursor: pointer;
-}
-
-.comic-button:hover {
-  background-color: #fff;
-  color: #004a51;
-  border: 2px solid #013944;
-  box-shadow: 5px 5px 0px #002b13;
-}
-
-.comic-button:active {
-  background-color: #003844;
-  box-shadow: none;
-  transform: translateY(4px);
-}
-
-.titulos-grandes {
-    font-family: "Rantaro";
-    font-size: 80px;
-    font-weight:normal;
-}
-
-/* .content_container {
-    margin: 0 !important;
-  width: 100%;
-  height: 100%;
-  background: radial-gradient(circle at 25% 25%, #a3b1c6 15%, transparent 15%),
-    radial-gradient(circle at 75% 75%, #a3b1c6 15%, transparent 15%);
-  background-size: 10px 10px;
-  background-color: #ffffff;
-} */
-
-h1{
-    margin: 0;
 }

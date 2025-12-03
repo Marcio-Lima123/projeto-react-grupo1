@@ -21,7 +21,7 @@ export function RegisterPage(){
                         <input class='btn_enter' type='submit' value={'Registar'}></input>
                         <div class='reg_container'>
                             <label>Já tem conta?</label>
-                            <a class='btn_enter' href='#/login'>Registar</a>
+                            <a class='btn_enter' href='#/login'>Fazer Login</a>
                             {/* <input class='btn_enter' type='button' value={'Entrar'}  ></input> */}
                         </div>
                     </div>
