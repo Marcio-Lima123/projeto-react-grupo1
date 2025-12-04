@@ -23,7 +23,6 @@
     font-family: Arial, sans-serif;
     display: flex;
     flex-direction: column;
-    flex: 1;
     box-sizing: border-box;
 }
 .atividad_container{
@@ -37,11 +36,8 @@
     display: flex;
     flex-direction: column;
     height: 50% !important;
-
     margin: 0 7px 0 7px !important;
-
     font-weight: 600 !important;
-
     color: white;
 }
 .at_c > *{
