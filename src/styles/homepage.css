@@ -45,14 +45,6 @@ h1{
     height: 100%;
 }
 
-.green_background{
-    height: 500px;
-    display: flex;
-    align-items: center;
-    background-color: #61D095;
-    backface-visibility: visible;
-}
-
 .activity_bullet_list{
     margin: 10px 5% 0;
     font-size: 30px;
@@ -70,23 +62,47 @@ h1{
 .activity_bullet_list a:visited{
     color: transparent;
 }
+
+.green_background{
+    display: flex;
+    align-items: center;
+    background-color: #61D095;
+    backface-visibility: visible;
+}
+
+.spaced_container{
+    height: 450px;
+    margin: 0 50px 0;
+    display: flex;
+    align-items: center;
+}
+
+
 .percentages_homepage{
-    padding: 10px;
-    margin: 5px 5% 0;
     font-size: 30px;
     display: flex;
     justify-content: center;
+    align-items: center;
 }
 .percentages_homepage p{
-    margin:0;
     font-size: 70px;
     text-align: center;
     display: flex;
     justify-content: center;
 }
+
+.percentages_homepage > div h1{
+    height: 30%;
+    text-align: top;
+}
+
+.percentages_homepage > div p{
+    height: 70%;
+    text-align: bottom;
+}
+
 .percentages_homepage h1{
     font-weight: normal;
-    margin:0 5% 0;
     text-align: center;
     font-size: 40px;
     display: flex;

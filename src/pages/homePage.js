@@ -44,23 +44,25 @@ export function Home() {
                 </div>
             </div>
             <div class="green_background">
-                <p class="medium-tittles">Algumas estatísticas da nossa aplicação:</p>
-                <div class="percentages_homepage">
-                    <div>
-                        <h1>Número de utilizadores:</h1>
-                        <p><strong>42069 Utilizadores</strong></p>
-                    </div>
-                    <div>
-                        <h1>Percentagem de satisfação:</h1>
-                        <p><strong>90%</strong></p>
-                    </div>
-                    <div>
-                        <h1>Número de atividades:</h1>
-                        <p><strong>204 Atividades diferentes</strong></p>
+                <div class="spaced_container">
+                    <p class="medium-tittles">Algumas estatísticas da nossa aplicação:</p>
+                    <div class="percentages_homepage">
+                        <div>
+                            <h1>Número de utilizadores:</h1>
+                            <p><strong>42069 Utilizadores</strong></p>
+                        </div>
+                        <div>
+                            <h1>Percentagem de satisfação:</h1>
+                            <p><strong>90%</strong></p>
+                        </div>
+                        <div>
+                            <h1>Número de atividades:</h1>
+                            <p><strong>204 Atividades</strong></p>
+                        </div>
                     </div>
                 </div>
             </div>
-            <p class="small-tittles"> Do que estás à espera? Começa a set ativo hoje!!!</p>
+            <p class="small-tittles"> Do que estás à espera? Começa a ser ativo hoje!!!</p>
             <div>
                 <h1 class="medium-tittles">Atividades para Hoje (nºAtividades)</h1>
                 <div class="container-activities">
