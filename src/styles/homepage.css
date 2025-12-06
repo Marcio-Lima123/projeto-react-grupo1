@@ -7,13 +7,14 @@ h1{
     margin: 0;
 }
 
-.big-tittles {
+/* Textos */
+.text-size-big-Rantaro {
     font-family: "Rantaro";
     font-size: 140px;
     font-weight:normal;
     text-align: center;
 }
-.medium-tittles {
+.text-size-medium-Rantaro {
     margin: 5px;
     font-family: "Rantaro";
     font-size: 80px;
@@ -21,120 +22,20 @@ h1{
     text-align: left;
 }
 
-.small-tittles {    
+.text-size-small-Rantaro {    
     font-family: "Rantaro";
     font-size: 40px;
     font-weight:normal;
     text-align: center;
 }
 
-.small-tittles-normal {    
+.text-size-small {    
     font-size: 40px;
     font-weight:normal;
     text-align: center;
 }
 
-.container-activities{
-    display: flex;
-    justify-content: center;
-}
-
-.content_container{
-    margin: 20x;
-    width: 100%;
-    height: 100%;
-}
-
-.activity_bullet_list{
-    margin: 10px 5% 0;
-    font-size: 30px;
-    display: flex;
-    justify-content: center;
-}
-.activity_bullet_list img{
-    width: 750px;
-    height: 750px;
-}
-.activity_bullet_list a{
-    text-decoration: none;
-}
-
-.activity_bullet_list a:visited{
-    color: transparent;
-}
-
-.green_background{
-    display: flex;
-    align-items: center;
-    background-color: #61D095;
-    backface-visibility: visible;
-}
-
-.spaced_container{
-    height: 450px;
-    margin: 0 50px 0;
-    display: flex;
-    align-items: center;
-}
-
-
-.percentages_homepage{
-    font-size: 30px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-.percentages_homepage p{
-    font-size: 70px;
-    text-align: center;
-    display: flex;
-    justify-content: center;
-}
-
-.percentages_homepage > div h1{
-    height: 30%;
-    text-align: top;
-}
-
-.percentages_homepage > div p{
-    height: 70%;
-    text-align: bottom;
-}
-
-.percentages_homepage h1{
-    font-weight: normal;
-    text-align: center;
-    font-size: 40px;
-    display: flex;
-    justify-content: center;
-    font-family: "Rantaro";
-}
-
-.activity{
-    width: 260px;
-    height: 150px;
-    background-color: #006c67;
-    border: solid 3px #003844;
-    border-radius: 5px;
-    margin: 10px;
-}
-
-.image-homepage{
-    width: 100%;
-    height: 100%;
-}
-
-.hero-image {
-  height: 40rem;
-  width: 100%;
-  background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.5)), url("../../public/imgs/atividade.jpeg");
-  background-size: 2000px;
-  background-position: center;
-  background-repeat: no-repeat;
-}
-
-/* Place text in the middle of the image */
-.hero-text {
+.text-hero {
   text-align: center;
   position: relative;
   top: 50%;
@@ -143,10 +44,27 @@ h1{
   color: white;
 }
 
-/* Botão com animação */
-.comic-button {
+/* Imagens */
+
+.image-homepage{
+    width: 100%;
+    height: 100%;
+}
+
+.image-hero {
+  height: 40rem;
+  width: 100%;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.5)), url("../../public/imgs/atividade.jpeg");
+  background-size: 2000px;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+/* Butões */
+
+.button-comic {
   display: inline-block;
-  padding: 5px 10px;
+  padding: 10px;
   font-size: 20px;
   font-weight: bold;
   text-align: center;
@@ -160,18 +78,158 @@ h1{
   cursor: pointer;
 }
 
-.comic-button:hover {
+.button-comic:hover {
   background-color: #fff;
   color: #004a51;
   border: 2px solid #013944;
   box-shadow: 5px 5px 0px #002b13;
 }
 
-.comic-button:active {
+.button-comic:active {
   background-color: #003844;
   box-shadow: none;
   transform: translateY(4px);
 }
+
+/* Containers */
+
+/* --- Container que tem Tudo da Página --- */
+.content_container{
+    margin: 20x;
+    width: 100%;
+    height: 100%;
+}
+/* ------------------------------------------ */
+
+/* --- Container de Mostrar os Vários Tipos de Atividades --- */
+.container-activity-bullet_list{
+    margin: 10px 5% 0;
+    font-size: 30px;
+    display: flex;
+    justify-content: center;
+}
+.container-activity-bullet_list img{
+    width: 750px;
+    height: 750px;
+}
+.container-activity-bullet_list a{
+    text-decoration: none;
+}
+
+.container-activity-bullet_list a:visited{
+    color: transparent;
+}
+/* ------------------------------------------ */
+
+/* --- Container de Mostrar as Percentagens --- */
+.container-percentages{
+    font-size: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.container-percentages p{
+    font-size: 70px;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+}
+
+.container-percentages > div h1{
+    height: 30%;
+    text-align: top;
+}
+
+.container-percentages > div p{
+    height: 70%;
+    text-align: bottom;
+}
+
+.container-percentages h1{
+    font-weight: normal;
+    text-align: center;
+    font-size: 40px;
+    display: flex;
+    justify-content: center;
+    font-family: "Rantaro";
+}
+
+.container-percentages-background{
+    height: 450px;
+    border-radius: 20px;
+    padding: 10px;
+    margin: 0 50px 0;
+    display: flex;
+    align-items: center;
+    background-color: #61D095;
+    backface-visibility: visible;
+}
+/* ------------------------------------------ */
+
+/* --- Container para Mostrar as Atividades --- */
+.container-activities{
+    display: flex;
+    justify-content: center;
+}
+
+.activityM{
+    width: 260px;
+    height: 150px;
+    background-color: #006c67;
+    border: solid 3px #003844;
+    border-radius: 5px;
+    margin: 10px;
+}
+
+.activity{
+    width: 260px;
+    height: 150px;
+    background-color: #006c67;
+    border: solid 3px #003844;
+    border-radius: 5px;
+    margin: 10px;
+    color: #fff;
+    padding: 0 5px 0;
+}
+
+.activity div{
+    height: 50%;
+}
+
+.activity-icons{
+    height: 50%;
+    display:flex;
+    margin: 10px 0 0;
+}
+
+.activity h1{
+    font-size: large;
+    font-weight: bold;
+    margin: 1px;
+}
+
+.activity p{
+    font-size: medium;
+    font-weight: normal;
+    margin: 1px;
+}
+
+.activity img{
+    height: 20px;
+    margin: 0 5px 0 0;
+}
+
+.activity button{
+    margin: auto;
+    margin-top: 30px;
+    display: flex;
+    align-items: center;
+    width: 200px;
+    height: 70%;
+    display: flex;
+}
+/* ------------------------------------------ */
+
 /* tudo para baixo não foi feito pelo Tiago */
 
 .at_c{
