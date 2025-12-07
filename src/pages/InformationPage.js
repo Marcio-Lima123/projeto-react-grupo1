@@ -8,7 +8,8 @@ export function InformationPage() {
     const [user,setUser] = useState({
         email: "loading...",
         nome: "loading...",
-        foto: null
+        foto: null,
+        localizacao: "loading...",
     });
 
     // Quando houver login
@@ -22,7 +23,8 @@ export function InformationPage() {
             setUser({
                 email: "teste@teste.local",
                 nome: "Utilizador1",
-                foto: null
+                foto: null,
+                localizacao: "São Miguel",
             });
         }
     }, []);
@@ -43,6 +45,11 @@ export function InformationPage() {
                 </div>
 
                 <div className="info_p">
+                    <h3>Localização</h3>
+                    <p>{user.localizacao}</p>
+                </div>
+
+                <div className="info_p">
                     <h3>Imagem de Perfil</h3>
                     <div className="profile_pic">
                         <img src={user.foto} alt="perfil"/>
@@ -60,7 +67,8 @@ export function InformationEditPage() {
     const [form, setForm] = useState({
         email:"",
         nome: "",
-        imagem: ""
+        imagem: "",
+        localizacao: ""
     });
 
     function SaveInfo() {
@@ -91,6 +99,17 @@ export function InformationEditPage() {
                         placeholder="Novo nome de utilizador"
                         value={form.nome}
                         onChange={(e) => setForm({...form, nome: e.target.value})}
+                    />
+                </div>
+
+                <div className="edit_p">
+                    <h3>Localização</h3>
+                    <input
+                        type="text"
+                        className="edit_input"
+                        placeholder="Distrito ou Ilha"
+                        value={form.localizacao}
+                        onChange={(e) => setForm({...form, localizacao: e.target.value})}
                     />
                 </div>
 
