@@ -27,7 +27,7 @@ export function Home() {
                     <p> E para os mais dedicados, os com mais atividades são destacados no nosso <a href="#/classificacao"><strong>leaderboard</strong></a></p>
                 </div>
                 <div>
-                    <img src="/imgs/varias_atividades.png"></img>
+                    <img src="/imgs/varias_atividades.png" alt="imagens"></img>
                 </div>
             </div>
             {/* Mostrar percentagens para convencer da autenticidade da aplicação */}
@@ -53,54 +53,27 @@ export function Home() {
             <h1 class="text-size-medium-Rantaro">Atividades para Hoje (nºAtividades)</h1>
             <div class="container-activities">
                 {/* Java Script para pegar as coisas da base de dados e criar os elementos no html*/}
-                <div class='activity'>
-                    <div>
-                        <div>
-                            <h1>Atividade 1</h1>
-                            <p>Lorem Impsum dolor aset comma</p>
-                        </div>
-                        <div>
-                            <div>
-                                <div class="activity-icons">
-                                    <img src='/imgs/people_white.png' alt='people'></img>
-                                    <p>1</p>
-                                </div>
-                                <div class="activity-icons">
-                                    <img src='/imgs/people_white.png' alt='people'></img>
-                                    <p>~10min</p>
-                                </div>
-                                <div class="activity-icons">
-                                    <img src='/imgs/difficulties_white.png' alt='hard_person'></img>
-                                    <p>Few to no challenges</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div>
-                            <button type='submit' class="button-comic">Concluir Atividade</button>
-                        </div>
+                <div className='activity'>
+                  <div className='at_c'>
+                    <div className='at_name'>
+                      <p>Atividade 1 - Descrição da atividade</p>
                     </div>
-                </div>
-                <div class='activityM'>
-                    <div class='at_c'>
-                        <div class='at_name'>
-                            <p>Atividade 1 - Descrição da atvidade</p>
+                    <div className='etc_container'>
+                      <div className='etc_f_container'>
+                        <div className='gc_container'>
+                          <img src='/imgs/people_white.png' alt='people' />
+                          <p>1</p>
                         </div>
-                        <div class='etc_container'>
-                            <div class='etc_f_container'>
-                                <div class='gc_container'>
-                                    <img src='/imgs/people_white.png' alt='people'></img>
-                                    <p>1</p>
-                                </div>
-                                <div class='gc_container'>
-                                    <img src='/imgs/difficulties_white.png' alt='hard_person'></img>
-                                    <p>Few to no challenges</p>
-                                </div>
-                            </div>
-                            <div class="btn_container">
-                                <button type='submit' class="button-comic">Concluir Atividade</button>
-                            </div>
+                        <div className='gc_container'>
+                          <img src='/imgs/difficulties_white.png' alt='hard_person' />
+                          <p>Few to no challenges</p>
                         </div>
+                      </div>
+                      <div className="btn_container">
+                        <button type='submit' className="button-comic">Concluir Atividade</button>
+                      </div>
                     </div>
+                  </div>
                 </div>
             </div>
             {/* Mostrar atividades recomendadas a todos utilizadores */}

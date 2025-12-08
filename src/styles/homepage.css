@@ -122,47 +122,58 @@ h1{
 /* ------------------------------------------ */
 
 /* --- Container de Mostrar as Percentagens --- */
-.container-percentages{
-    font-size: 30px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-.container-percentages p{
-    font-size: 70px;
-    text-align: center;
-    display: flex;
-    justify-content: center;
-}
-
-.container-percentages > div h1{
-    height: 30%;
-    text-align: top;
-}
-
-.container-percentages > div p{
-    height: 70%;
-    text-align: bottom;
-}
-
-.container-percentages h1{
-    font-weight: normal;
-    text-align: center;
-    font-size: 40px;
-    display: flex;
-    justify-content: center;
-    font-family: "Rantaro";
-}
-
-.container-percentages-background{
-    height: 450px;
-    border-radius: 20px;
-    padding: 10px;
-    margin: 0 50px 0;
-    display: flex;
-    align-items: center;
+.container-percentages-background {
     background-color: #61D095;
-    backface-visibility: visible;
+    border-radius: 20px;
+    padding: 60px 0px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 40px;
+}
+
+/* Título */
+.container-percentages-background > .text-size-medium-Rantaro {
+    text-align: center;
+    font-size: 70px;
+    color: #003844;
+    margin: 0;
+}
+
+/* Grid das estatísticas */
+.container-percentages {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+    gap: 45px;
+    width: 90%;
+    max-width: 1400px;
+}
+
+/* Cada bloco */
+.container-percentages > div {
+    background-color: #ffffff55;
+    border: 3px solid #003844;
+    border-radius: 10px;
+    padding: 25px 20px;
+    text-align: center;
+    box-shadow: 6px 6px 0px #003844;
+}
+
+/* Títulos dentro de cada bloco */
+.container-percentages h1 {
+    font-size: 36px;
+    font-family: "Rantaro";
+    font-weight: normal;
+    color: #003844;
+    margin-bottom: 15px;
+}
+
+/* percentagens */
+.container-percentages p strong {
+    font-size: 60px;
+    font-weight: bold;
+    color: #003844;
 }
 /* ------------------------------------------ */
 
@@ -221,24 +232,18 @@ h1{
 
 .activity button{
     margin: auto;
-    margin-top: 30px;
+    margin-top: 5px;
     display: flex;
     align-items: center;
     width: 200px;
-    height: 70%;
-    display: flex;
-}
+    height: 70%;}
 /* ------------------------------------------ */
-
 /* tudo para baixo não foi feito pelo Tiago */
-
 .at_c{
     display: flex;
     flex-direction: column;
     height: 50% !important;
-
     margin: 0 7px 0 7px !important;
-
     font-weight: 600 !important;
 
     color: white;
@@ -249,7 +254,7 @@ h1{
 }
 
 .at_name{
-    width: 253px;
+    width: 250px;
     height: 75px !important;
 }
 
@@ -275,10 +280,10 @@ h1{
 
 .btn_container > button{
     display: flex;
-
+    margin-top: 15px;
     width: 82%;
     height: 40px;
-    /*align-items: center;*/
+    align-items: center;
     justify-content: center;
-    margin: auto;
+
 }
