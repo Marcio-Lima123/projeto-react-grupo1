@@ -17,17 +17,16 @@ function App() {
       <Routes>
         <Route path='/login' element={<LoginPage />} />
         <Route path='/register' element={<RegisterPage />} />
-        <Route element={<Layout />}>
+        <Route element={<Layout />}>ll
           <Route path='/' element={<Home />} />
           <Route path='/classificacao' element={<ClassificacaoPage />} />
-          {/* <Route path="/informacao" element={<InformationPage />} /> */}
         </Route>
-          <Route element={<Layout2 />}>
-            <Route path="/informacao" element={<InformationPage />} />
-            <Route path="/informacao/editar" element={<InformationEditPage />} />
-            <Route path="/preferencias" element={<PreferencesPage />} />
-            <Route path="/estatistica" element={<EstatisticasPage />} />
-          </Route>
+        <Route element={<Layout2 />}>
+          <Route path="/informacao" element={<InformationPage />} />
+          <Route path="/informacao/editar" element={<InformationEditPage />} />
+          <Route path="/preferencias" element={<PreferencesPage />} />
+          <Route path="/estatistica" element={<EstatisticasPage />} />
+        </Route>
       </Routes>
     </Router>
   );

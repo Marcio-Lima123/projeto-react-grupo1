@@ -1,6 +1,13 @@
 import '../styles/login.css'
 
 export function LoginPage() {
+
+    // const handleSubmit = async (e) => {
+    //     try {
+    //         none
+    //     }
+    // }
+
     return (
         <div class='bg_container'>
             <div class='ap_name'>

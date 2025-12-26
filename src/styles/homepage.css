@@ -107,6 +107,7 @@ h1{
     font-size: 30px;
     display: flex;
     justify-content: center;
+    flex-wrap: wrap;
 }
 .container-activity-bullet_list img{
     width: 750px;

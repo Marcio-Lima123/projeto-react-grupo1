@@ -162,7 +162,7 @@ header{
     justify-content: space-evenly;
     
     width: 160px;
-    height: 100px;
+    height: fit-content;
 
     z-index: 0;
 
@@ -188,7 +188,7 @@ header{
     display: flex;
     flex-direction: row;
     align-items: center;
-    margin: 0 10px 0 10px;
+    margin: 5px 10px 5px 10px;
 }
 
 .menu_tab > a{
