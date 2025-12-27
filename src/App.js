@@ -10,11 +10,13 @@ import { PreferencesPage } from './pages/PreferencesPage';
 import { InformationPage, InformationEditPage } from './pages/InformationPage';
 import { EstatisticasPage } from './pages/EstatisticasPage';
 import { ClassificacaoPage } from './pages/ClassificacaoPage';
+import { ActivitySystem } from './components/api';
 
 function App() {
   return (
     <Router>
       <Routes>
+        <Route path='/api' element={<ActivitySystem />} />
         <Route path='/login' element={<LoginPage />} />
         <Route path='/register' element={<RegisterPage />} />
         <Route element={<Layout />}>ll

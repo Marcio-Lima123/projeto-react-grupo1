@@ -82,6 +82,12 @@ export function Home() {
         }
     ])
 
+    fetch("https://activities-system-api-xmi4ow.5sc6y6-1.usa-e2.cloudhub.io/api/activities")
+        .then(response => console.log(response))
+        .catch(error => console.log(error));
+
+
+
     const [state, setState] = useState('Concluir Atividade')
     // //Vai buscar as coisas à API de actividades
     const completeAct = () =>{
@@ -90,6 +96,7 @@ export function Home() {
 
     return (
         <div className='content_container'>
+            
             {/* Imagem com texto dentro da Homepage, designação de image-hero */}
             <div className="image-hero">
                 <div className="text-hero">
