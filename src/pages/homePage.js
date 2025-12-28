@@ -1,5 +1,5 @@
 import '../styles/homepage.css'
-import {useState} from "react";
+import { useState } from "react";
 // import express from 'express';
 
 
@@ -34,7 +34,7 @@ export function Home() {
     // app.listen(5000, () => console.log("Server running on port 5000"));
 
 
-    const [acts ] = useState([
+    const [acts] = useState([
         {
             "activity": "Learn Express.js",
             "type": "education",
@@ -82,15 +82,24 @@ export function Home() {
         }
     ])
 
-    fetch("https://activities-system-api-xmi4ow.5sc6y6-1.usa-e2.cloudhub.io/api/activities")
-        .then(response => console.log(response))
-        .catch(error => console.log(error));
 
+    // const [ativ, setAtiv] = useState();
+
+    const atividades = require('../jsons/act.json')['activities'];
+    console.log(atividades['activities'][1]);
+
+
+    // for (let i = 0; i < atividades['activities'].lenght / 2; i++) {
+    //     console.log(atividades['activities'][0])
+    // }
+
+    
+
+    // setAtiv(atividades['activities'])
 
 
     const [state, setState] = useState('Concluir Atividade')
-    // //Vai buscar as coisas à API de actividades
-    const completeAct = () =>{
+    const completeAct = () => {
         setState('Conluida')
     }
 
@@ -146,7 +155,7 @@ export function Home() {
             {/* Mostrar atividades diária de acordo com os gostos do utilizador */}
             <h1 className="text-size-medium-Rantaro">Atividades para Hoje (nºAtividades)</h1>
             <div className="container-activities">
-            {/* Java Script para pegar as coisas da base de dados e criar os elementos no html*/}
+                {/* Java Script para pegar as coisas da base de dados e criar os elementos no html*/}
                 {acts.map(atividade => (
                     <div className='activity'>
                         <div className='at_c'>
@@ -166,7 +175,7 @@ export function Home() {
                                 </div>
                             </div>
                             <div className="btn_container">
-                                <button type='submit' className="button-comic" onClick={completeAct}>{ state }</button>
+                                <button type='submit' className="button-comic" onClick={completeAct}>{state}</button>
                             </div>
                         </div>
                     </div>
