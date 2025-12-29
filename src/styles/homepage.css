@@ -182,6 +182,7 @@ h1{
 .container-activities{
     display: flex;
     justify-content: center;
+    flex-wrap: wrap;
 }
 
 .activityM{
