@@ -13,6 +13,7 @@ export function RegisterPage() {
       const res = await signUp(email, password);
       console.log("Utilizador criado:", res);
       alert("Conta criada com sucesso!");
+      window.location.href = "#/preferencias";
     } catch (err) {
       alert("Erro ao registar utilizador");
     }

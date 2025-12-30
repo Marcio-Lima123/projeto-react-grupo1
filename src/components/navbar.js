@@ -1,5 +1,4 @@
 import '../styles/navbar.css';
-
 export function NavBar() {
     return (
         <header>
@@ -27,7 +26,7 @@ export function NavBar() {
                 <div className='us_menu'>
                     <img className='user_logo' src="imgs/user.png" alt="Pfp_img"></img>
                     {/* adicionar javascript para ir buscar o log in */}
-                    <p className="logo_name">Username</p>
+                    <p className="logo_name">username</p>
                     <div className='dd_menu_container'>
                         <button className='btn_logs'><img className='logs' src="imgs/menu2.png" alt="menu"></img></button>
                         <div className='dd_container'>

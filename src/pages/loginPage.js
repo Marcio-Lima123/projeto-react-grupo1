@@ -1,7 +1,7 @@
 import '../styles/login.css'
 import { useState } from "react";
 import { signIn } from "../components/usersApi";
-
+import { useNavigate } from "react-router-dom";
 export function LoginPage() {
 
     // const handleSubmit = async (e) => {
@@ -12,23 +12,32 @@ export function LoginPage() {
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-
+  const navigate = useNavigate();
   async function handleSubmit(e) {
     e.preventDefault();
 
     try {
       const res = await signIn(email, password);
 
-      // guardar token login
-      localStorage.setItem("token", res.idToken);
-      localStorage.setItem("userEmail", res.email);
+      const user = {
+        email: res.email,
+        nome: res.displayName || res.email.split("@")[0],
+        localizacao: "Não definida",
+        foto: res.photoUrl || null,
+        token: res.idToken
+      };
+
+      // guarda utilizador tudo daods
+      localStorage.setItem("user", JSON.stringify(user));
 
       alert("Login efetuado com sucesso!");
-      // opcional: window.location.href = "#/";
+      navigate("/"); // ir página inicial
+
     } catch (err) {
       alert("Email ou password incorretos");
     }
   }
+
 
   return (
     <div className="bg_container">

@@ -11,23 +11,14 @@ export function InformationPage() {
         foto: null,
         localizacao: "loading...",
     });
-
+    const [prefs, setPrefs] = useState(null);
     // Quando houver login
     useEffect(() => {
         const saveUser = localStorage.getItem("user");
+        const savePrefs = localStorage.getItem("preferences");
 
-        if (saveUser) {
-            setUser(JSON.parse(saveUser));
-        } else {
-            // enquanto não existe login…
-            setUser({
-                email: "teste@teste.local",
-                nome: "Utilizador1",
-                foto: null,
-                localizacao: "São Miguel",
-            });
-        }
-    }, []);
+        if (saveUser) setUser(JSON.parse(saveUser));
+        if (savePrefs) setPrefs(JSON.parse(savePrefs));}, []);
     return (
         <div className="info_">
             {/* informacao*/}
@@ -55,6 +46,13 @@ export function InformationPage() {
                         <img src={user.foto} alt="perfil"/>
                     </div>
                 </div>
+
+                {prefs && (
+                    <div className="info_p">
+                        <h3>Preferências</h3>
+                        <p>Tipos: {prefs.types.join(", ")}</p>
+                        <p>Atividades por dia: {prefs.daily}</p>
+                    </div>)}
 
                 <button className="edit_btn" onClick={() => navigate("/informacao/editar")}>Editar Perfil</button>
             </section>

@@ -4,8 +4,19 @@ import { useState } from "react";
 export function PreferencesPage() {
     const [min, setMin] = useState(1);
     const [max, setMax] = useState(3);
+    const [daily, setDaily] = useState(1);
 
-const [daily, setDaily] = useState(1);
+    const [types, setTypes] = useState([]);
+
+    function toggle(value, list, setList) {
+        if (list.includes(value)) {setList(list.filter(v => v !== value));}
+        else {setList([...list, value]);}}
+
+    function savePreferences() {
+        const preferences = {types, participants: { min, max }, daily};
+
+        localStorage.setItem("preferences", JSON.stringify(preferences));
+        alert("Preferências guardadas com sucesso");}
 
 function inMin() {
   if (min<max) setMin(min+1);}
@@ -29,13 +40,15 @@ function deMax() {
               <h4>Tipos de Atividades:</h4>
 
               <div className="pref-grid">
-                  <label><input type="checkbox"/> Educação</label>
-                  <label><input type="checkbox"/> Recreativo</label>
-                  <label><input type="checkbox"/> Social</label>
-                  <label><input type="checkbox"/> Caridade</label>
-                  <label><input type="checkbox"/> Cozinha</label>
-                  <label><input type="checkbox"/> Relaxamento</label>
-                  <label><input type="checkbox"/> Trabalho</label>
+                  <label><input type="checkbox" onChange={() => toggle("education", types, setTypes)}/> Educação</label>
+                  <label><input type="checkbox"
+                                onChange={() => toggle("recreational", types, setTypes)}/> Recreativo</label>
+                  <label><input type="checkbox" onChange={() => toggle("social", types, setTypes)}/> Social</label>
+                  <label><input type="checkbox" onChange={() => toggle("charity", types, setTypes)}/> Caridade</label>
+                  <label><input type="checkbox" onChange={() => toggle("cooking", types, setTypes)}/> Cozinha</label>
+                  <label><input type="checkbox"
+                                onChange={() => toggle("relaxation", types, setTypes)}/> Relaxamento</label>
+                  <label><input type="checkbox" onChange={() => toggle("work", types, setTypes)}/> Trabalho</label>
               </div>
           </div>
 
@@ -72,7 +85,7 @@ function deMax() {
                   <button onClick={inDaily}>+</button>
               </div>
           </div>
-          <button className="pref-save-btn">Salvar</button>
+          <button className="pref-save-btn" onClick={savePreferences}>Salvar</button>
       </div>
   );
 }
