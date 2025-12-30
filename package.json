@@ -1,7 +1,6 @@
 {
   "name": "projeto-react-grupo1",
   "version": "0.1.0",
-  "proxy":  "https://activities-system-api-xmi4ow.5sc6y6-1.usa-e2.cloudhub.io",
   "private": true,
   "dependencies": {
     "@testing-library/dom": "^10.4.1",
