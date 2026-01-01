@@ -36,22 +36,17 @@ export function InformationPage() {
                 </div>
 
                 <div className="info_p">
-                    <h3>Localização</h3>
-                    <p>{user.localizacao}</p>
-                </div>
-
-                <div className="info_p">
                     <h3>Imagem de Perfil</h3>
                     <div className="profile_pic">
                         <img src={user.foto} alt="perfil"/>
                     </div>
                 </div>
-
                 {prefs && (
                     <div className="info_p">
                         <h3>Preferências</h3>
                         <p>Tipos: {prefs.types.join(", ")}</p>
                         <p>Atividades por dia: {prefs.daily}</p>
+                        <p>Localização: {prefs.location}</p>
                     </div>)}
 
                 <button className="edit_btn" onClick={() => navigate("/informacao/editar")}>Editar Perfil</button>

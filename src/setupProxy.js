@@ -17,4 +17,13 @@ module.exports = function (app) {
       changeOrigin: true,
     })
   );
+  // Proxy para Weather API
+app.use(
+  "/api/weather",
+  createProxyMiddleware({
+    target: "https://weather-system-api-xmi4ow.5sc6y6-2.usa-e2.cloudhub.io",
+    changeOrigin: true,
+  })
+);
+
 };

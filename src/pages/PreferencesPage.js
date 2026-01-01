@@ -1,20 +1,32 @@
 import '../styles/preferences.css';
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 export function PreferencesPage() {
     const [min, setMin] = useState(1);
     const [max, setMax] = useState(3);
     const [daily, setDaily] = useState(1);
-
+    //apis
     const [types, setTypes] = useState([]);
+    const [capitals, setCapitals] = useState([]);
+    const [location, setLocation] = useState("");
 
+    useEffect(() => {
+        async function loadCapitals() {
+            try {
+                 const res = await fetch("/api/weather/capitals");
+                const data = await res.json();
+                 setCapitals(data);
+            } catch (err) {
+                console.error("Erro ao carregar capitais", err);
+            }
+        }loadCapitals();}, []);
     function toggle(value, list, setList) {
         if (list.includes(value)) {setList(list.filter(v => v !== value));}
         else {setList([...list, value]);}}
 
     function savePreferences() {
-        const preferences = {types, participants: { min, max }, daily};
-
+        const preferences = {types, participants: { min, max }, daily,location};
+        //guarda na localstorage
         localStorage.setItem("preferences", JSON.stringify(preferences));
         alert("Preferências guardadas com sucesso");}
 
@@ -65,6 +77,22 @@ function deMax() {
                   <div className="num-box">{max}</div>
                   <button onClick={inMax}>+</button>
               </div>
+          </div>
+
+          {/* LOCALIZAÇÃO da api weatherr */}
+          <div className="pref-section">
+              <h4>Localização:</h4>
+
+              <select className="pref-select" value={location} onChange={e => setLocation(e.target.value)}>
+                  <option value="">Selecionar cidade</option>
+
+                  {Object.keys(capitals).map(region => (
+                      <optgroup key={region} label={region}>
+                          {Object.entries(capitals[region]).map(([code, name]) => (
+                              <option key={code} value={name}>{name}</option>))}
+                      </optgroup>
+                  ))}
+              </select>
           </div>
 
           <div className="pref-section">

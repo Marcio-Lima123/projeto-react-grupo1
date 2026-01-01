@@ -1,4 +1,4 @@
-
+//api atividades
 const API_URL = "/api/activities";
 
 export async function fetchActivities() {
