@@ -6,7 +6,7 @@ export function SubNavbar(){
             <nav class='links_container'>
                 <h3>Configurações</h3>
                 <div className='link_box'>
-                    <a href="#/informacao"><img src='/imgs/user-white.png' alt=''></img> Informaçôes</a>
+                    <a href="#/informacao"><img src='/imgs/user-white.png' alt=''></img> Informações</a>
                 </div>
                 <div className='link_box'>
                     <a href="#/preferencias"><img src='/imgs/star-white.png' alt=''></img> Preferências</a>

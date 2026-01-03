@@ -36,7 +36,7 @@ export function NavBar() {
                                     <a href="#/login">Login</a>
                                 </div>
                                 <div className='menu_tab'>
-                                    <a href="#/register">Resgister</a>
+                                    <a href="#/register">Register</a>
                                 </div>
                                 <div className='menu_tab'>
                                     <a href='#/informacao'><img className='logs_menu' src="imgs/settings.png" alt="config"></img>Configurações</a>
