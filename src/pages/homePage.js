@@ -46,7 +46,7 @@ const otherActivities = activities.filter(a => a.type === "education").slice(0, 
       <div className="container-activity-bullet_list">
         <div>
           <p>
-            Nós disponibilizamos <strong>+200 atividades </strong> para todos os
+            Nós disponibilizamos <strong>+100 atividades </strong> para todos os
             gostos, tais como:
           </p>
           <ul>
@@ -85,7 +85,7 @@ const otherActivities = activities.filter(a => a.type === "education").slice(0, 
           </div>
           <div>
             <h1>Número de atividades:</h1>
-            <p><strong>204 Atividades</strong></p>
+            <p><strong>{activities.length} Atividades</strong></p>
           </div>
         </div>
       </div>
