@@ -96,19 +96,27 @@ return (
         <div className="linha">
           <div className="user_linha">
             <img src="/imgs/user.png" alt="user" />
-            <p>Utilizador 123...</p>
+            <p>{podium[0].uid}</p>
           </div>
           <p>07/05/2024</p>
-          <p>509</p>
+          <p>{podium[0].total}</p>
         </div>
 
         <div className="linha">
           <div className="user_linha">
             <img src="/imgs/user.png" alt="user" />
-            <p>Utilizador 123...</p>
+            <p>{podium[1].uid}</p>
           </div>
           <p>07/05/2024</p>
-          <p>451</p>
+          <p>{podium[1].total}</p>
+        </div>
+        <div className="linha">
+          <div className="user_linha">
+            <img src="/imgs/user.png" alt="user" />
+            <p>{podium[2].uid}</p>
+          </div>
+          <p>07/05/2024</p>
+          <p>{podium[2].total}</p>
         </div>
       </div>
     </div>
