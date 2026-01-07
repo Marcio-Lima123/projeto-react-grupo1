@@ -1,29 +1,37 @@
 const { createProxyMiddleware } = require("http-proxy-middleware");
 module.exports = function (app) {
   // Proxy para Activities API
-  app.use(
-    "/api/activities",
-    createProxyMiddleware({
-      target: "https://activities-system-api-xmi4ow.5sc6y6-1.usa-e2.cloudhub.io",
-      changeOrigin: true,
-    })
-  );
+  // app.use(
+  //   "/api/activities",
+  //   createProxyMiddleware({
+  //     target: "https://activities-system-api-xmi4ow.5sc6y6-1.usa-e2.cloudhub.io",
+  //     changeOrigin: true,
+  //   })
+  // );
 
-  // Proxy para Users API
+  //   // Proxy para Users API
+  //   app.use(
+  //     "/api/users",
+  //     createProxyMiddleware({
+  //       target: "https://users-system-api-xmi4ow.5sc6y6-4.usa-e2.cloudhub.io",
+  //       changeOrigin: true,
+  //     })
+  //   );
+  //   // Proxy para Weather API
+  // app.use(
+  //   "/api/weather",
+  //   createProxyMiddleware({
+  //     target: "https://weather-system-api-xmi4ow.5sc6y6-2.usa-e2.cloudhub.io",
+  //     changeOrigin: true,
+  //   })
+  // );
+  // Proxy para o Experience API
   app.use(
-    "/api/users",
+    "/api",
     createProxyMiddleware({
-      target: "https://users-system-api-xmi4ow.5sc6y6-4.usa-e2.cloudhub.io",
-      changeOrigin: true,
+      target: "https://web-experience-api-xmi4ow.5sc6y6-2.usa-e2.cloudhub.io",
+      changeOrigin: true
     })
-  );
-  // Proxy para Weather API
-app.use(
-  "/api/weather",
-  createProxyMiddleware({
-    target: "https://weather-system-api-xmi4ow.5sc6y6-2.usa-e2.cloudhub.io",
-    changeOrigin: true,
-  })
-);
+  )
 
 };

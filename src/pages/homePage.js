@@ -12,30 +12,30 @@ export function Home() {
   const [loadingDetails, setLoadingDetails] = useState(false);
   const [selectedSection, setSelectedSection] = useState(null);
   const [completedActivities, setCompletedActivities] = useState(() => {
-  const stored = localStorage.getItem("completedActivities");
-  return stored ? JSON.parse(stored) : [];
+    const stored = localStorage.getItem("completedActivities");
+    return stored ? JSON.parse(stored) : [];
   });
 
   async function openDetails(key, section) {
-  if (!key) return;
+    if (!key) return;
 
-  try {
-    setLoadingDetails(true);
-    setSelectedSection(section);
+    try {
+      setLoadingDetails(true);
+      setSelectedSection(section);
 
-    const response = await fetch(`/api/activities/${key}`);
-    if (!response.ok) {
-      throw new Error("Erro ao obter detalhes da atividade");
+      const response = await fetch(`/api/activities/${key}`);
+      if (!response.ok) {
+        throw new Error("Erro ao obter detalhes da atividade");
+      }
+
+      const data = await response.json();
+      setSelectedActivity(data);
+    } catch (err) {
+      console.error(err);
+    } finally {
+      setLoadingDetails(false);
     }
-
-    const data = await response.json();
-    setSelectedActivity(data);
-  } catch (err) {
-    console.error(err);
-  } finally {
-    setLoadingDetails(false);
   }
-}
 
 
   useEffect(() => {
@@ -44,25 +44,25 @@ export function Home() {
 
     // Se não estiver autenticado, manda o utilizador para a página de login
     if (!savedUser) {
-        navigate("/login");
-        return;
+      navigate("/login");
+      return;
     }
 
     // Se ainda não guardou preferências, manda o utilizador para a página de preferências
     if (prefsSaved !== "true") {
-        navigate("/preferencias");
-        return;
+      navigate("/preferencias");
+      return;
     }
 
 
     // Se tudo anteriormente deu certo, mostra as atividades
     async function loadActivities() {
-        const data = await fetchActivities();
-        setActivities(data);
+      const data = await fetchActivities();
+      setActivities(data);
     }
 
     loadActivities();
-    }, [navigate]);
+  }, [navigate]);
 
 
   // Filtros
@@ -79,119 +79,119 @@ export function Home() {
     .slice(0, 7);
 
   function DetailsBlock() {
-  if (loadingDetails) {
+    if (loadingDetails) {
+      return (
+        <p className="text-size-small-Rantaro">
+          A carregar detalhes da atividade…
+        </p>
+      );
+    }
+
+    if (!selectedActivity) return null;
+
     return (
-      <p className="text-size-small-Rantaro">
-        A carregar detalhes da atividade…
-      </p>
+      <div className="activity-details">
+        <h2 className="text-size-medium-Rantaro">
+          {selectedActivity.activity}
+        </h2>
+
+        <p><strong>Tipo:</strong> {selectedActivity.type}</p>
+        <p><strong>Participantes:</strong> {selectedActivity.participants}</p>
+        <p><strong>Dificuldade:</strong> {selectedActivity.accessibility}</p>
+
+        {selectedActivity.description && (
+          <p><strong>Descrição:</strong> {selectedActivity.description}</p>
+        )}
+
+        <button
+          className="button-comic"
+          onClick={() => {
+            setSelectedActivity(null);
+            setSelectedSection(null);
+          }}
+        >
+          Fechar detalhes
+        </button>
+      </div>
     );
   }
 
-  if (!selectedActivity) return null;
+  function toggleCompleted(key) {
+    setCompletedActivities(prev => {
+      let updated;
 
-  return (
-    <div className="activity-details">
-      <h2 className="text-size-medium-Rantaro">
-        {selectedActivity.activity}
-      </h2>
+      if (prev.includes(key)) {
+        updated = prev.filter(k => k !== key);
+      } else {
+        updated = [...prev, key];
+      }
 
-      <p><strong>Tipo:</strong> {selectedActivity.type}</p>
-      <p><strong>Participantes:</strong> {selectedActivity.participants}</p>
-      <p><strong>Dificuldade:</strong> {selectedActivity.accessibility}</p>
+      localStorage.setItem(
+        "completedActivities",
+        JSON.stringify(updated)
+      );
 
-      {selectedActivity.description && (
-        <p><strong>Descrição:</strong> {selectedActivity.description}</p>
-      )}
-
-      <button
-        className="button-comic"
-        onClick={() => {
-          setSelectedActivity(null);
-          setSelectedSection(null);
-        }}
-      >
-        Fechar detalhes
-      </button>
-    </div>
-  );
-}
-
-function toggleCompleted(key) {
-  setCompletedActivities(prev => {
-    let updated;
-
-    if (prev.includes(key)) {
-      updated = prev.filter(k => k !== key);
-    } else {
-      updated = [...prev, key];
-    }
-
-    localStorage.setItem(
-      "completedActivities",
-      JSON.stringify(updated)
-    );
-
-    return updated;
-  });
-}
+      return updated;
+    });
+  }
 
 
 
   function ActivityCard({ atividade, section }) {
-  const isClickable = Boolean(atividade.key);
-  const isCompleted = completedActivities.includes(atividade.key);
+    const isClickable = Boolean(atividade.key);
+    const isCompleted = completedActivities.includes(atividade.key);
 
 
-  return (
-    <div
-      className={`activity ${isClickable ? "clickable" : ""}`}
-      onClick={() =>
-        isClickable && openDetails(atividade.key, section)
-      }
-    >
-      <div className="at_c">
-        <div className="at_name">
-          <p>{atividade.activity}</p>
-        </div>
+    return (
+      <div
+        className={`activity ${isClickable ? "clickable" : ""}`}
+        onClick={() =>
+          isClickable && openDetails(atividade.key, section)
+        }
+      >
+        <div className="at_c">
+          <div className="at_name">
+            <p>{atividade.activity}</p>
+          </div>
 
-        <div className="etc_container">
-          <div className="etc_f_container">
-            <div className="gc_container">
-              <img src="/imgs/people_white.png" alt="people" />
-              <p>{atividade.participants}</p>
-            </div>
-            <div className="gc_container">
-              <img src="/imgs/difficulties_white.png" alt="difficulty" />
-              <p>{atividade.accessibility}</p>
+          <div className="etc_container">
+            <div className="etc_f_container">
+              <div className="gc_container">
+                <img src="/imgs/people_white.png" alt="people" />
+                <p>{atividade.participants}</p>
+              </div>
+              <div className="gc_container">
+                <img src="/imgs/difficulties_white.png" alt="difficulty" />
+                <p>{atividade.accessibility}</p>
+              </div>
             </div>
           </div>
-        </div>
 
-        <div className="btn_container">
-          <button
+          <div className="btn_container">
+            <button
               className={`button-comic ${isCompleted ? "completed" : ""}`}
               onClick={(e) => {
                 e.stopPropagation();
                 toggleCompleted(atividade.key);
               }}
-          >
-            {isCompleted ? "Feita!" : "Marcar como Feita"}
-          </button>
+            >
+              {isCompleted ? "Feita!" : "Marcar como Feita"}
+            </button>
 
+          </div>
         </div>
       </div>
-    </div>
-  );
+    );
   }
 
 
   return (
-      <div className="content_container">
+    <div className="content_container">
 
-        {/* Imagem Hero */}
-        <div className="image-hero">
-          <div className="text-hero">
-            <h1 className="text-size-big-Rantaro">Dailio</h1>
+      {/* Imagem Hero */}
+      <div className="image-hero">
+        <div className="text-hero">
+          <h1 className="text-size-big-Rantaro">Dailio</h1>
           <h1 className="text-size-small-Rantaro">
             a tua dose diária de entretenimento!!!
           </h1>
@@ -264,17 +264,17 @@ function toggleCompleted(key) {
       <h1 className="text-size-medium-Rantaro">Atividades para Hoje</h1>
       <div className="container-activities">
         {dailyActivities.map(a => (
-        <ActivityCard
-          key={a.key || a.activity}
-          atividade={a}
-          section="daily"
-        />
-      ))}
-    </div>
+          <ActivityCard
+            key={a.key || a.activity}
+            atividade={a}
+            section="daily"
+          />
+        ))}
+      </div>
 
-    {selectedSection === "daily" && (
-      <DetailsBlock />
-    )}
+      {selectedSection === "daily" && (
+        <DetailsBlock />
+      )}
 
 
       {/* Texto intermédio */}
@@ -286,17 +286,17 @@ function toggleCompleted(key) {
       <h1 className="text-size-medium-Rantaro">Atividades Recomendadas</h1>
       <div className="container-activities">
         {recommendedActivities.map(a => (
-        <ActivityCard
-          key={a.key || a.activity}
-          atividade={a}
-          section="recommended"
-        />
+          <ActivityCard
+            key={a.key || a.activity}
+            atividade={a}
+            section="recommended"
+          />
         ))}
-</div>
+      </div>
 
-{selectedSection === "recommended" && (
-  <DetailsBlock />
-)}
+      {selectedSection === "recommended" && (
+        <DetailsBlock />
+      )}
 
 
       {/* Texto intermédio */}
@@ -308,17 +308,17 @@ function toggleCompleted(key) {
       <h1 className="text-size-medium-Rantaro">Outras Atividades</h1>
       <div className="container-activities">
         {otherActivities.map(a => (
-        <ActivityCard
-          key={a.key || a.activity}
-          atividade={a}
-          section="other"
-        />
-      ))}
-</div>
+          <ActivityCard
+            key={a.key || a.activity}
+            atividade={a}
+            section="other"
+          />
+        ))}
+      </div>
 
-{selectedSection === "other" && (
-  <DetailsBlock />
-)}
+      {selectedSection === "other" && (
+        <DetailsBlock />
+      )}
     </div>
   );
 }

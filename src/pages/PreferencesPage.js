@@ -7,7 +7,7 @@ export function PreferencesPage() {
     const [min, setMin] = useState(1);
     const [max, setMax] = useState(3);
     const [daily, setDaily] = useState(1);
-    
+
     // TIPOS DE ATIVIDADE
     const [types, setTypes] = useState([]);
 
@@ -29,23 +29,22 @@ export function PreferencesPage() {
 
     // Quando houver login
     useEffect(() => {
-    const savedUser = localStorage.getItem("user");
-    console.log("RAW localStorage user:", savedUser);
+        const savedUser = localStorage.getItem("user");
+        // console.log("RAW localStorage user:", savedUser);
 
-    if (savedUser) {
-        const parsedUser = JSON.parse(savedUser);
-        setUser(parsedUser);
+        if (savedUser) {
+            const parsedUser = JSON.parse(savedUser);
+            setUser(parsedUser);
 
-        // reaplicar token ao Axios
-        if (parsedUser.token) {
-        setAuthToken(parsedUser.token);
+            // reaplicar token ao Axios
+            if (parsedUser.token) {
+                setAuthToken(parsedUser.token);
+            }
+            // console.log("Axios Authorization header AFTER setAuthToken:", api.defaults.headers.common["Authorization"]);
         }
-        console.log("Axios Authorization header AFTER setAuthToken:",api.defaults.headers.common["Authorization"]
-  );
-    }
     }, []);
 
-    console.log(user.uid)
+    // console.log(user.uid)
 
     useEffect(() => {
         async function loadCapitals() {
@@ -68,32 +67,32 @@ export function PreferencesPage() {
             const storedUser = JSON.parse(localStorage.getItem("user"));
 
             if (!storedUser?.token) {
-            alert("Sessão inválida. Faça login novamente.");
-            return;
+                alert("Sessão inválida. Faça login novamente.");
+                return;
             }
 
             // Garantir o token no momento do request
             setAuthToken(storedUser.token);
 
             const payload = {
-            globalIdLocal: storedUser.uid,
-            preferences: {
-                dailyActivities: daily,
-                minParticipants: min,
-                maxParticipants: max,
-                education: types.includes("education"),
-                recreational: types.includes("recreational"),
-                social: types.includes("social"),
-                charity: types.includes("charity"),
-                cooking: types.includes("cooking"),
-                relaxation: types.includes("relaxation"),
-                busywork: types.includes("work")
-            },
-            difficulty: {
-                easy: true,
-                medium: false,
-                hard: false
-            }
+                globalIdLocal: storedUser.uid,
+                preferences: {
+                    dailyActivities: daily,
+                    minParticipants: min,
+                    maxParticipants: max,
+                    education: types.includes("education"),
+                    recreational: types.includes("recreational"),
+                    social: types.includes("social"),
+                    charity: types.includes("charity"),
+                    cooking: types.includes("cooking"),
+                    relaxation: types.includes("relaxation"),
+                    busywork: types.includes("work")
+                },
+                difficulty: {
+                    easy: true,
+                    medium: false,
+                    hard: false
+                }
             };
 
             await api.put(`/users/${storedUser.uid}/preferences`, payload);
@@ -106,7 +105,7 @@ export function PreferencesPage() {
             console.error("SAVE PREF ERROR:", err.response?.data || err);
             alert("Sessão expirada. Faça login novamente.");
         }
-        }
+    }
 
     function inMin() {
         if (min < max) setMin(min + 1);
@@ -172,12 +171,12 @@ export function PreferencesPage() {
                     {Object.entries(capitals).map(([region, cities]) => (
                         <optgroup key={region} label={region}>
                             {Object.entries(cities).map(([code, name]) => (
-                            <option key={code} value={code}>
-                                {name}
-                            </option>
+                                <option key={code} value={code}>
+                                    {name}
+                                </option>
                             ))}
                         </optgroup>
-                        ))}
+                    ))}
                 </select>
             </div>
 
