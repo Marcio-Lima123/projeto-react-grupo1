@@ -43,7 +43,7 @@ export function Home() {
     const savedUserRaw = localStorage.getItem("user");
 
     // Se não estiver autenticado, manda o utilizador para a página de login
-    if (!savedUser) {
+    if (!savedUserRaw) {
       navigate("/login");
       return;
     }
