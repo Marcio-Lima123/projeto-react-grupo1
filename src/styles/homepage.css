@@ -289,3 +289,21 @@ h1{
     justify-content: center;
 
 }
+
+.activity.clickable {
+  cursor: pointer;
+}
+
+.activity.clickable:hover {
+  transform: scale(1.02);
+  transition: transform 0.2s ease;
+}
+
+.activity-details {
+  margin: 40px auto;
+  padding: 20px;
+  max-width: 700px;
+  background-color: #111;
+  border-radius: 12px;
+  color: white;
+}

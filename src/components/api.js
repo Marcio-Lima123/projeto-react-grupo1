@@ -11,7 +11,7 @@ export async function fetchActivities() {
 
     const data = await response.json();
     console.log("API retornou:", data);
-    return data.activities || [];
+    return data.activities;
   } catch (error) {
     console.error("Erro na API:", error);
     return [];

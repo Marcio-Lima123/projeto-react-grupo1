@@ -1,25 +1,140 @@
-import '../styles/homepage.css';
+import "../styles/homepage.css";
 import { useEffect, useState } from "react";
 import { fetchActivities } from "../components/api";
 
 export function Home() {
   const [activities, setActivities] = useState([]);
+  const [selectedActivity, setSelectedActivity] = useState(null);
+  const [loadingDetails, setLoadingDetails] = useState(false);
+  const [selectedSection, setSelectedSection] = useState(null);
+
+
+  async function openDetails(key, section) {
+  if (!key) return;
+
+  try {
+    setLoadingDetails(true);
+    setSelectedSection(section);
+
+    const response = await fetch(`/api/activities/${key}`);
+    if (!response.ok) {
+      throw new Error("Erro ao obter detalhes da atividade");
+    }
+
+    const data = await response.json();
+    setSelectedActivity(data);
+  } catch (err) {
+    console.error(err);
+  } finally {
+    setLoadingDetails(false);
+  }
+}
+
 
   useEffect(() => {
     async function loadActivities() {
       const data = await fetchActivities();
-      console.log("DADOS DA API:", data);
       setActivities(data);
     }
     loadActivities();
   }, []);
 
-  // Filtros das atividades meti limite a aparecer
-  const dailyActivities = activities.filter(a => a.type === "relaxation").slice(0, 8);
+  // Filtros
+  const dailyActivities = activities
+    .filter(a => a.type === "relaxation")
+    .slice(0, 8);
 
-  const recommendedActivities = activities.filter(a => a.type === "social").slice(0, 8);
+  const recommendedActivities = activities
+    .filter(a => a.type === "social")
+    .slice(0, 8);
 
-  const otherActivities = activities.filter(a => a.type === "education").slice(0, 7);
+  const otherActivities = activities
+    .filter(a => a.type === "education")
+    .slice(0, 7);
+
+  function DetailsBlock() {
+  if (loadingDetails) {
+    return (
+      <p className="text-size-small-Rantaro">
+        A carregar detalhes da atividade…
+      </p>
+    );
+  }
+
+  if (!selectedActivity) return null;
+
+  return (
+    <div className="activity-details">
+      <h2 className="text-size-medium-Rantaro">
+        {selectedActivity.activity}
+      </h2>
+
+      <p><strong>Tipo:</strong> {selectedActivity.type}</p>
+      <p><strong>Participantes:</strong> {selectedActivity.participants}</p>
+      <p><strong>Dificuldade:</strong> {selectedActivity.accessibility}</p>
+
+      {selectedActivity.description && (
+        <p><strong>Descrição:</strong> {selectedActivity.description}</p>
+      )}
+
+      <button
+        className="button-comic"
+        onClick={() => {
+          setSelectedActivity(null);
+          setSelectedSection(null);
+        }}
+      >
+        Fechar detalhes
+      </button>
+    </div>
+  );
+}
+
+
+  function ActivityCard({ atividade, section }) {
+  const isClickable = Boolean(atividade.key);
+
+  return (
+    <div
+      className={`activity ${isClickable ? "clickable" : ""}`}
+      onClick={() =>
+        isClickable && openDetails(atividade.key, section)
+      }
+    >
+      <div className="at_c">
+        <div className="at_name">
+          <p>{atividade.activity}</p>
+        </div>
+
+        <div className="etc_container">
+          <div className="etc_f_container">
+            <div className="gc_container">
+              <img src="/imgs/people_white.png" alt="people" />
+              <p>{atividade.participants}</p>
+            </div>
+            <div className="gc_container">
+              <img src="/imgs/difficulties_white.png" alt="difficulty" />
+              <p>{atividade.accessibility}</p>
+            </div>
+          </div>
+        </div>
+
+        <div className="btn_container">
+          <button
+            className="button-comic"
+            onClick={(e) => {
+              e.stopPropagation();
+              console.log("Marcar como feita:", atividade.key);
+            }}
+          >
+            Marcar como Feita
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 
   return (
     <div className="content_container">
@@ -73,7 +188,9 @@ export function Home() {
 
       {/* Estatísticas */}
       <div className="container-percentages-background">
-        <p className="text-size-medium-Rantaro">Algumas estatísticas da nossa aplicação:</p>
+        <p className="text-size-medium-Rantaro">
+          Algumas estatísticas da nossa aplicação:
+        </p>
         <div className="container-percentages">
           <div>
             <h1>Número de utilizadores:</h1>
@@ -90,91 +207,69 @@ export function Home() {
         </div>
       </div>
 
-      <p className="text-size-small-Rantaro">Do que estás à espera? Começa a ser ativo hoje!!!</p>
+      <p className="text-size-small-Rantaro">
+        Do que estás à espera? Começa a ser ativo hoje!!!
+      </p>
 
       {/* Atividades do dia */}
       <h1 className="text-size-medium-Rantaro">Atividades para Hoje</h1>
       <div className="container-activities">
-        {dailyActivities.map(atividade => (
-          <div className="activity" key={atividade.key}>
-            <div className="at_c">
-              <div className="at_name"><p>{atividade.activity}</p></div>
-              <div className="etc_container">
-                <div className="etc_f_container">
-                  <div className="gc_container">
-                    <img src="/imgs/people_white.png" alt="people" />
-                    <p>{atividade.participants}</p>
-                  </div>
-                  <div className="gc_container">
-                    <img src="/imgs/difficulties_white.png" alt="difficulty" />
-                    <p>{atividade.accessibility}</p>
-                  </div>
-                </div>
-              </div>
-              <div className="btn_container">
-                <button className="button-comic">Marcar como Feita</button>
-              </div>
-            </div>
-          </div>
-        ))}
-      </div>
+        {dailyActivities.map(a => (
+        <ActivityCard
+          key={a.key || a.activity}
+          atividade={a}
+          section="daily"
+        />
+      ))}
+    </div>
+
+    {selectedSection === "daily" && (
+      <DetailsBlock />
+    )}
+
+
+      {/* Texto intermédio */}
+      <p className="text-size-small-Rantaro">
+        Não gostou das suas atividades? Nós também temos:
+      </p>
 
       {/* Atividades recomendadas */}
-      <p className="text-size-small-Rantaro">Não gostou das suas atividades? Nós também temos:</p>
       <h1 className="text-size-medium-Rantaro">Atividades Recomendadas</h1>
       <div className="container-activities">
-        {recommendedActivities.map(atividade => (
-          <div className="activity" key={atividade.key}>
-            <div className="at_c">
-              <div className="at_name"><p>{atividade.activity}</p></div>
-              <div className="etc_container">
-                <div className="etc_f_container">
-                  <div className="gc_container">
-                    <img src="/imgs/people_white.png" alt="people" />
-                    <p>{atividade.participants}</p>
-                  </div>
-                  <div className="gc_container">
-                    <img src="/imgs/difficulties_white.png" alt="difficulty" />
-                    <p>{atividade.accessibility}</p>
-                  </div>
-                </div>
-              </div>
-              <div className="btn_container">
-                <button className="button-comic">Marcar como Feita</button>
-              </div>
-            </div>
-          </div>
+        {recommendedActivities.map(a => (
+        <ActivityCard
+          key={a.key || a.activity}
+          atividade={a}
+          section="recommended"
+        />
         ))}
-      </div>
+</div>
+
+{selectedSection === "recommended" && (
+  <DetailsBlock />
+)}
+
+
+      {/* Texto intermédio */}
+      <p className="text-size-small-Rantaro">
+        Além das atividades anteriores, que tal experimentar algo diferente:
+      </p>
 
       {/* Outras atividades */}
-      <p className="text-size-small-Rantaro">Além das atividades anteriores, que tal experimentar algo diferente:</p>
       <h1 className="text-size-medium-Rantaro">Outras Atividades</h1>
       <div className="container-activities">
-        {otherActivities.map(atividade => (
-          <div className="activity" key={atividade.key}>
-            <div className="at_c">
-              <div className="at_name"><p>{atividade.activity}</p></div>
-              <div className="etc_container">
-                <div className="etc_f_container">
-                  <div className="gc_container">
-                    <img src="/imgs/people_white.png" alt="people" />
-                    <p>{atividade.participants}</p>
-                  </div>
-                  <div className="gc_container">
-                    <img src="/imgs/difficulties_white.png" alt="difficulty" />
-                    <p>{atividade.accessibility}</p>
-                  </div>
-                </div>
-              </div>
-              <div className="btn_container">
-                <button className="button-comic">Marcar como Feita</button>
-              </div>
-            </div>
-          </div>
-        ))}
-      </div>
+        {otherActivities.map(a => (
+        <ActivityCard
+          key={a.key || a.activity}
+          atividade={a}
+          section="other"
+        />
+      ))}
+</div>
 
+{selectedSection === "other" && (
+  <DetailsBlock />
+)}
     </div>
   );
 }
