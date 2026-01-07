@@ -2,8 +2,8 @@ import '../styles/subnavbar.css'
 
 export function SubNavbar(){
     return(
-        <div class='nav_container'>
-            <nav class='links_container'>
+        <div className='nav_container'>
+            <nav className='links_container'>
                 <h3>Configurações</h3>
                 <div className='link_box'>
                     <a href="#/informacao"><img src='/imgs/user-white.png' alt=''></img> Informações</a>

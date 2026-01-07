@@ -15,11 +15,11 @@ export function Home() {
   }, []);
 
   // Filtros das atividades meti limite a aparecer
-const dailyActivities = activities.filter(a => a.type === "relaxation").slice(0, 8);
+  const dailyActivities = activities.filter(a => a.type === "relaxation").slice(0, 8);
 
-const recommendedActivities = activities.filter(a => a.type === "social").slice(0, 8);
+  const recommendedActivities = activities.filter(a => a.type === "social").slice(0, 8);
 
-const otherActivities = activities.filter(a => a.type === "education").slice(0, 7);
+  const otherActivities = activities.filter(a => a.type === "education").slice(0, 7);
 
   return (
     <div className="content_container">
