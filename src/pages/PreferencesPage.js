@@ -76,7 +76,7 @@ export function PreferencesPage() {
             setAuthToken(storedUser.token);
 
             const payload = {
-            globalIdLocal: storedUser.uid,
+            globalIdLocal: location,
             preferences: {
                 dailyActivities: daily,
                 minParticipants: min,
@@ -87,7 +87,7 @@ export function PreferencesPage() {
                 charity: types.includes("charity"),
                 cooking: types.includes("cooking"),
                 relaxation: types.includes("relaxation"),
-                busywork: types.includes("work")
+                busywork: types.includes("work"),
             },
             difficulty: {
                 easy: true,
