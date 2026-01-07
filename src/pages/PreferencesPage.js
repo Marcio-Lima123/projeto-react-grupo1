@@ -75,24 +75,24 @@ export function PreferencesPage() {
             setAuthToken(storedUser.token);
 
             const payload = {
-                globalIdLocal: storedUser.uid,
-                preferences: {
-                    dailyActivities: daily,
-                    minParticipants: min,
-                    maxParticipants: max,
-                    education: types.includes("education"),
-                    recreational: types.includes("recreational"),
-                    social: types.includes("social"),
-                    charity: types.includes("charity"),
-                    cooking: types.includes("cooking"),
-                    relaxation: types.includes("relaxation"),
-                    busywork: types.includes("work")
-                },
-                difficulty: {
-                    easy: true,
-                    medium: false,
-                    hard: false
-                }
+            globalIdLocal: location,
+            preferences: {
+                dailyActivities: daily,
+                minParticipants: min,
+                maxParticipants: max,
+                education: types.includes("education"),
+                recreational: types.includes("recreational"),
+                social: types.includes("social"),
+                charity: types.includes("charity"),
+                cooking: types.includes("cooking"),
+                relaxation: types.includes("relaxation"),
+                busywork: types.includes("work"),
+            },
+            difficulty: {
+                easy: true,
+                medium: false,
+                hard: false
+            }
             };
 
             await api.put(`/users/${storedUser.uid}/preferences`, payload);

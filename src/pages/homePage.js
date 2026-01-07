@@ -1,13 +1,13 @@
 import "../styles/homepage.css";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { fetchActivities } from "../components/api";
+import api from "../api/client";
 
 export function Home() {
   // criar a variável que permite mudar o utilizador de página
   const navigate = useNavigate();
 
-  const [activities, setActivities] = useState([]);
+  const [activities, setActivities] = useState({daily: [],recommended: [],other: []});
   const [selectedActivity, setSelectedActivity] = useState(null);
   const [loadingDetails, setLoadingDetails] = useState(false);
   const [selectedSection, setSelectedSection] = useState(null);
@@ -40,7 +40,7 @@ export function Home() {
 
   useEffect(() => {
     const prefsSaved = localStorage.getItem("preferencesSaved");
-    const savedUser = localStorage.getItem("user");
+    const savedUserRaw = localStorage.getItem("user");
 
     // Se não estiver autenticado, manda o utilizador para a página de login
     if (!savedUser) {
@@ -48,35 +48,58 @@ export function Home() {
       return;
     }
 
-    // Se ainda não guardou preferências, manda o utilizador para a página de preferências
     if (prefsSaved !== "true") {
       navigate("/preferencias");
       return;
     }
 
+    const savedUser = JSON.parse(savedUserRaw);
+
+    if (savedUser.token) {
+        api.defaults.headers.common["Authorization"] =
+        `Bearer ${savedUser.token}`;
+    } else {
+        console.error("TOKEN EM FALTA");
+        navigate("/login");
+        return;
+    }
+
 
     // Se tudo anteriormente deu certo, mostra as atividades
     async function loadActivities() {
-      const data = await fetchActivities();
-      setActivities(data);
+        try {
+            const savedUser = JSON.parse(localStorage.getItem("user"));
+
+            const res = await api.get(`/users/${savedUser.uid}/activities`);
+
+            console.log("Payload recebido do backend:", res.data);
+
+            const data = res.data;
+
+            setActivities({
+            daily: Object.entries(data.daily || {}).map(([key, value]) => ({
+                key,
+                ...value
+            })),
+            recommended: Object.entries(data.recommended || {}).map(([key, value]) => ({
+                key,
+                ...value
+            })),
+            other: Object.entries(data.other || {}).map(([key, value]) => ({
+                key,
+                ...value
+            }))
+            });
+        } catch (err) {
+            console.error(
+            "ERRO AO OBTER ATIVIDADES:",
+            err.response?.data || err
+            );
+        }
     }
 
     loadActivities();
   }, [navigate]);
-
-
-  // Filtros
-  const dailyActivities = activities
-    .filter(a => a.type === "relaxation")
-    .slice(0, 8);
-
-  const recommendedActivities = activities
-    .filter(a => a.type === "social")
-    .slice(0, 8);
-
-  const otherActivities = activities
-    .filter(a => a.type === "education")
-    .slice(0, 7);
 
   function DetailsBlock() {
     if (loadingDetails) {
@@ -251,7 +274,7 @@ export function Home() {
           </div>
           <div>
             <h1>Número de atividades:</h1>
-            <p><strong>{activities.length} Atividades</strong></p>
+            <p><strong>{activities.daily.length + activities.recommended.length + activities.other.length} Atividades </strong></p>
           </div>
         </div>
       </div>
@@ -263,14 +286,14 @@ export function Home() {
       {/* Atividades do dia */}
       <h1 className="text-size-medium-Rantaro">Atividades para Hoje</h1>
       <div className="container-activities">
-        {dailyActivities.map(a => (
-          <ActivityCard
-            key={a.key || a.activity}
-            atividade={a}
-            section="daily"
-          />
+        {activities.daily.map(a => (
+            <ActivityCard
+                key={a.key}
+                atividade={a}
+                section="daily"
+            />
         ))}
-      </div>
+    </div>
 
       {selectedSection === "daily" && (
         <DetailsBlock />
@@ -285,14 +308,15 @@ export function Home() {
       {/* Atividades recomendadas */}
       <h1 className="text-size-medium-Rantaro">Atividades Recomendadas</h1>
       <div className="container-activities">
-        {recommendedActivities.map(a => (
-          <ActivityCard
-            key={a.key || a.activity}
-            atividade={a}
-            section="recommended"
-          />
+        {activities.recommended.map(a => (
+            <ActivityCard
+                key={a.key}
+                atividade={a}
+                section="recommended"
+            />
         ))}
-      </div>
+
+</div>
 
       {selectedSection === "recommended" && (
         <DetailsBlock />
@@ -307,14 +331,14 @@ export function Home() {
       {/* Outras atividades */}
       <h1 className="text-size-medium-Rantaro">Outras Atividades</h1>
       <div className="container-activities">
-        {otherActivities.map(a => (
-          <ActivityCard
-            key={a.key || a.activity}
-            atividade={a}
-            section="other"
-          />
+        {activities.other.map(a => (
+            <ActivityCard
+                key={a.key}
+                atividade={a}
+                section="other"
+            />
         ))}
-      </div>
+</div>
 
       {selectedSection === "other" && (
         <DetailsBlock />
