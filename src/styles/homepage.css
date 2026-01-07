@@ -303,7 +303,16 @@ h1{
   margin: 40px auto;
   padding: 20px;
   max-width: 700px;
-  background-color: #111;
+  background-color: #006c67;
   border-radius: 12px;
   color: white;
 }
+
+.activity.completed {
+  opacity: 0.6;
+}
+
+.button-comic.completed {
+  background-color: #4caf50;
+}
+
