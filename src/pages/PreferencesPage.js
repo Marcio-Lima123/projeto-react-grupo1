@@ -10,6 +10,25 @@ export function PreferencesPage() {
     const [capitals, setCapitals] = useState([]);
     const [location, setLocation] = useState("");
 
+    //dados do utilizador a mais tarde vir do login
+    const [user, setUser] = useState({
+        id: "loading...",
+        email: "loading...",
+        nome: "username",
+        foto: null,
+        localizacao: "loading...",
+    });
+
+    // Quando houver login
+    useEffect(() => {
+        const saveUser = localStorage.getItem("user");
+        if (saveUser) {
+            setUser(JSON.parse(saveUser));
+        }
+    }, []);
+
+    console.log(user.id)
+
     useEffect(() => {
         async function loadCapitals() {
             try {
@@ -27,8 +46,20 @@ export function PreferencesPage() {
         else { setList([...list, value]); }
     }
 
-    function savePreferences() {
+    async function savePreferences() {
         const preferences = { types, participants: { min, max }, daily, location };
+
+        const response = await fetch("/api/users/" + user.id + "/preferences", {
+            method: "PUT",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(preferences)
+        });
+        if (!response.ok){
+            throw new Error("Nao foi possivel salvar")
+        }
+
+        return await response.json()
+
         //guarda na localstorage
         localStorage.setItem("preferences", JSON.stringify(preferences));
         alert("Preferências guardadas com sucesso");
@@ -46,7 +77,7 @@ export function PreferencesPage() {
     function deMax() {
         if (max > min) setMax(max - 1);
     }
-    
+
     // nº atv
     function inDaily() {
         if (daily < 10) setDaily(daily + 1);

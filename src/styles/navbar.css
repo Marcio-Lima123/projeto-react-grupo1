@@ -191,7 +191,7 @@ header{
     margin: 5px 10px 5px 10px;
 }
 
-.menu_tab > a{
+.menu_tab > a, .menu_tab > button{
     display: flex;
     align-items: center;
 

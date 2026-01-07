@@ -3,8 +3,8 @@ export async function signUp(email, password) {
   try {
     const response = await fetch(`/api/users/sign-up`, {
       method: "POST",
-      headers: {"Content-Type": "application/json"},
-      body: JSON.stringify({email, password, returnSecureToken: true})
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ email, password, returnSecureToken: true })
     });
 
     if (!response.ok) {

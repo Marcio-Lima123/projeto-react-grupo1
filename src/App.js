@@ -2,7 +2,6 @@ import { HashRouter as Router, Routes, Route } from 'react-router-dom';
 import './App.css';
 
 import { Layout, Layout2 } from './Layout';
-
 import { Home } from './pages/homePage';
 import { LoginPage } from './pages/loginPage';
 import { RegisterPage } from './pages/registerPage'
@@ -10,24 +9,29 @@ import { PreferencesPage } from './pages/PreferencesPage';
 import { InformationPage, InformationEditPage } from './pages/InformationPage';
 import { EstatisticasPage } from './pages/EstatisticasPage';
 import { ClassificacaoPage } from './pages/ClassificacaoPage';
-
+// import { ProtectedRoute } from './components/ProtectedRoute';
 
 function App() {
   return (
     <Router>
       <Routes>
+        {/* Public */}
         <Route path='/login' element={<LoginPage />} />
         <Route path='/register' element={<RegisterPage />} />
         <Route element={<Layout />}>ll
           <Route path='/' element={<Home />} />
           <Route path='/classificacao' element={<ClassificacaoPage />} />
         </Route>
+        
+        {/* Protected */}
+        {/* <Route element={<ProtectedRoute />}> */}
         <Route element={<Layout2 />}>
           <Route path="/informacao" element={<InformationPage />} />
           <Route path="/informacao/editar" element={<InformationEditPage />} />
           <Route path="/preferencias" element={<PreferencesPage />} />
           <Route path="/estatistica" element={<EstatisticasPage />} />
         </Route>
+        {/* </Route> */}
       </Routes>
     </Router>
   );

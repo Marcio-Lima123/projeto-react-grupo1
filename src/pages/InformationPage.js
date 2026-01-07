@@ -2,10 +2,11 @@ import '../styles/information.css';
 import { useEffect, useState } from 'react';
 import { useNavigate } from "react-router-dom";
 export function InformationPage() {
+
     const navigate = useNavigate();
 
     //dados do utilizador a mais tarde vir do login
-    const [user,setUser] = useState({
+    const [user, setUser] = useState({
         email: "loading...",
         nome: "loading...",
         foto: null,
@@ -18,7 +19,9 @@ export function InformationPage() {
         const savePrefs = localStorage.getItem("preferences");
 
         if (saveUser) setUser(JSON.parse(saveUser));
-        if (savePrefs) setPrefs(JSON.parse(savePrefs));}, []);
+        if (savePrefs) setPrefs(JSON.parse(savePrefs));
+    }, []);
+
     return (
         <div className="info_">
             {/* informacao*/}
@@ -38,7 +41,7 @@ export function InformationPage() {
                 <div className="info_p">
                     <h3>Imagem de Perfil</h3>
                     <div className="profile_pic">
-                        <img src={user.foto} alt="perfil"/>
+                        <img src={user.foto} alt="perfil" />
                     </div>
                 </div>
                 {prefs && (
@@ -58,15 +61,36 @@ export function InformationPage() {
 export function InformationEditPage() {
 
     const [form, setForm] = useState({
-        email:"",
+        email: "",
         nome: "",
         imagem: "",
         localizacao: ""
     });
 
-    function SaveInfo() {
-        console.log("Novos dados enviados:", form);
+    async function SaveInfo() {
+        try {
+            const user = localStorage.getItem("user");
+
+            const response = await fetch("api/users/profile", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    // Authorization: `${token}`,
+                },
+                body: JSON.stringify(form),
+            });
+
+            if (!response.ok) throw new Error("Erro");
+
+            const updatedUser = await response.json();
+
+            localStorage.setItem("user", JSON.stringify(updatedUser));
+            console.log(user)
+        }
+        catch{console.error();
+        }
     }
+
     return (
         <div className="info_edit_">
 
@@ -80,7 +104,7 @@ export function InformationEditPage() {
                         className="edit_input"
                         placeholder="Novo email"
                         value={form.email}
-                        onChange={(e) => setForm({...form, email: e.target.value})}
+                        onChange={(e) => setForm({ ...form, email: e.target.value })}
                     />
                 </div>
 
@@ -91,7 +115,7 @@ export function InformationEditPage() {
                         className="edit_input"
                         placeholder="Novo nome de utilizador"
                         value={form.nome}
-                        onChange={(e) => setForm({...form, nome: e.target.value})}
+                        onChange={(e) => setForm({ ...form, nome: e.target.value })}
                     />
                 </div>
 
@@ -102,7 +126,7 @@ export function InformationEditPage() {
                         className="edit_input"
                         placeholder="Distrito ou Ilha"
                         value={form.localizacao}
-                        onChange={(e) => setForm({...form, localizacao: e.target.value})}
+                        onChange={(e) => setForm({ ...form, localizacao: e.target.value })}
                     />
                 </div>
 
@@ -113,13 +137,11 @@ export function InformationEditPage() {
                         className="edit_input"
                         placeholder="URL da nova imagem"
                         value={form.imagem}
-                        onChange={(e) => setForm({...form, imagem: e.target.value})}
+                        onChange={(e) => setForm({ ...form, imagem: e.target.value })}
                     />
                 </div>
 
-                <button className="save_btn" onClick={SaveInfo}>
-                    Salvar
-                </button>
+                <button className="save_btn" onClick={SaveInfo}>Salvar</button>
             </section>
         </div>
     );
