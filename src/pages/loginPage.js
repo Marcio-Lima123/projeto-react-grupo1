@@ -41,6 +41,7 @@ export function LoginPage() {
       // Para aplicar o token em próximas chamadas
       setAuthToken(res.idToken);
 
+      localStorage.removeItem("preferencesSaved");
       alert("Login efetuado com sucesso!");
       // ir página inicial
       navigate("/");

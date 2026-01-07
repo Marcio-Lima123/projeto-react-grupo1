@@ -14,10 +14,7 @@ export function Home() {
   const [completedActivities, setCompletedActivities] = useState(() => {
   const stored = localStorage.getItem("completedActivities");
   return stored ? JSON.parse(stored) : [];
-  
-});
-
-
+  });
 
   async function openDetails(key, section) {
   if (!key) return;
@@ -52,10 +49,11 @@ export function Home() {
     }
 
     // Se ainda não guardou preferências, manda o utilizador para a página de preferências
-    if (!prefsSaved) {
+    if (prefsSaved !== "true") {
         navigate("/preferencias");
         return;
     }
+
 
     // Se tudo anteriormente deu certo, mostra as atividades
     async function loadActivities() {
