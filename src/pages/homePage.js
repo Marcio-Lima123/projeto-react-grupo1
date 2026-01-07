@@ -6,29 +6,30 @@ export function Home() {
   const [activities, setActivities] = useState([]);
   const [selectedActivity, setSelectedActivity] = useState(null);
   const [loadingDetails, setLoadingDetails] = useState(false);
+  const [selectedSection, setSelectedSection] = useState(null);
 
-  async function openDetails(key) {
-    if (!key) {
-      console.warn("Atividade sem key válida — detalhes indisponíveis");
-      return;
+
+  async function openDetails(key, section) {
+  if (!key) return;
+
+  try {
+    setLoadingDetails(true);
+    setSelectedSection(section);
+
+    const response = await fetch(`/api/activities/${key}`);
+    if (!response.ok) {
+      throw new Error("Erro ao obter detalhes da atividade");
     }
 
-    try {
-      setLoadingDetails(true);
-
-      const response = await fetch(`/api/activities/${key}`);
-      if (!response.ok) {
-        throw new Error("Erro ao obter detalhes da atividade");
-      }
-
-      const data = await response.json();
-      setSelectedActivity(data);
-    } catch (err) {
-      console.error(err);
-    } finally {
-      setLoadingDetails(false);
-    }
+    const data = await response.json();
+    setSelectedActivity(data);
+  } catch (err) {
+    console.error(err);
+  } finally {
+    setLoadingDetails(false);
   }
+}
+
 
   useEffect(() => {
     async function loadActivities() {
@@ -51,47 +52,89 @@ export function Home() {
     .filter(a => a.type === "education")
     .slice(0, 7);
 
-  function ActivityCard({ atividade }) {
-    const isClickable = Boolean(atividade.key);
-
+  function DetailsBlock() {
+  if (loadingDetails) {
     return (
-      <div
-        className={`activity ${isClickable ? "clickable" : ""}`}
-        onClick={() => isClickable && openDetails(atividade.key)}
-      >
-        <div className="at_c">
-          <div className="at_name">
-            <p>{atividade.activity}</p>
-          </div>
-
-          <div className="etc_container">
-            <div className="etc_f_container">
-              <div className="gc_container">
-                <img src="/imgs/people_white.png" alt="people" />
-                <p>{atividade.participants}</p>
-              </div>
-              <div className="gc_container">
-                <img src="/imgs/difficulties_white.png" alt="difficulty" />
-                <p>{atividade.accessibility}</p>
-              </div>
-            </div>
-          </div>
-
-          <div className="btn_container">
-            <button
-              className="button-comic"
-              onClick={(e) => {
-                e.stopPropagation();
-                console.log("Marcar como feita:", atividade.key);
-              }}
-            >
-              Marcar como Feita
-            </button>
-          </div>
-        </div>
-      </div>
+      <p className="text-size-small-Rantaro">
+        A carregar detalhes da atividade…
+      </p>
     );
   }
+
+  if (!selectedActivity) return null;
+
+  return (
+    <div className="activity-details">
+      <h2 className="text-size-medium-Rantaro">
+        {selectedActivity.activity}
+      </h2>
+
+      <p><strong>Tipo:</strong> {selectedActivity.type}</p>
+      <p><strong>Participantes:</strong> {selectedActivity.participants}</p>
+      <p><strong>Dificuldade:</strong> {selectedActivity.accessibility}</p>
+
+      {selectedActivity.description && (
+        <p><strong>Descrição:</strong> {selectedActivity.description}</p>
+      )}
+
+      <button
+        className="button-comic"
+        onClick={() => {
+          setSelectedActivity(null);
+          setSelectedSection(null);
+        }}
+      >
+        Fechar detalhes
+      </button>
+    </div>
+  );
+}
+
+
+  function ActivityCard({ atividade, section }) {
+  const isClickable = Boolean(atividade.key);
+
+  return (
+    <div
+      className={`activity ${isClickable ? "clickable" : ""}`}
+      onClick={() =>
+        isClickable && openDetails(atividade.key, section)
+      }
+    >
+      <div className="at_c">
+        <div className="at_name">
+          <p>{atividade.activity}</p>
+        </div>
+
+        <div className="etc_container">
+          <div className="etc_f_container">
+            <div className="gc_container">
+              <img src="/imgs/people_white.png" alt="people" />
+              <p>{atividade.participants}</p>
+            </div>
+            <div className="gc_container">
+              <img src="/imgs/difficulties_white.png" alt="difficulty" />
+              <p>{atividade.accessibility}</p>
+            </div>
+          </div>
+        </div>
+
+        <div className="btn_container">
+          <button
+            className="button-comic"
+            onClick={(e) => {
+              e.stopPropagation();
+              console.log("Marcar como feita:", atividade.key);
+            }}
+          >
+            Marcar como Feita
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 
   return (
     <div className="content_container">
@@ -172,9 +215,18 @@ export function Home() {
       <h1 className="text-size-medium-Rantaro">Atividades para Hoje</h1>
       <div className="container-activities">
         {dailyActivities.map(a => (
-          <ActivityCard key={a.key || a.activity} atividade={a} />
-        ))}
-      </div>
+        <ActivityCard
+          key={a.key || a.activity}
+          atividade={a}
+          section="daily"
+        />
+      ))}
+    </div>
+
+    {selectedSection === "daily" && (
+      <DetailsBlock />
+    )}
+
 
       {/* Texto intermédio */}
       <p className="text-size-small-Rantaro">
@@ -185,9 +237,18 @@ export function Home() {
       <h1 className="text-size-medium-Rantaro">Atividades Recomendadas</h1>
       <div className="container-activities">
         {recommendedActivities.map(a => (
-          <ActivityCard key={a.key || a.activity} atividade={a} />
+        <ActivityCard
+          key={a.key || a.activity}
+          atividade={a}
+          section="recommended"
+        />
         ))}
-      </div>
+</div>
+
+{selectedSection === "recommended" && (
+  <DetailsBlock />
+)}
+
 
       {/* Texto intermédio */}
       <p className="text-size-small-Rantaro">
@@ -198,39 +259,17 @@ export function Home() {
       <h1 className="text-size-medium-Rantaro">Outras Atividades</h1>
       <div className="container-activities">
         {otherActivities.map(a => (
-          <ActivityCard key={a.key || a.activity} atividade={a} />
-        ))}
-      </div>
+        <ActivityCard
+          key={a.key || a.activity}
+          atividade={a}
+          section="other"
+        />
+      ))}
+</div>
 
-      {/* Detalhes */}
-      {loadingDetails && (
-        <p className="text-size-small-Rantaro">
-          A carregar detalhes da atividade…
-        </p>
-      )}
-
-      {selectedActivity && !loadingDetails && (
-        <div className="activity-details">
-          <h2 className="text-size-medium-Rantaro">
-            {selectedActivity.activity}
-          </h2>
-
-          <p><strong>Tipo:</strong> {selectedActivity.type}</p>
-          <p><strong>Participantes:</strong> {selectedActivity.participants}</p>
-          <p><strong>Dificuldade:</strong> {selectedActivity.accessibility}</p>
-
-          {selectedActivity.description && (
-            <p><strong>Descrição:</strong> {selectedActivity.description}</p>
-          )}
-
-          <button
-            className="button-comic"
-            onClick={() => setSelectedActivity(null)}
-          >
-            Fechar detalhes
-          </button>
-        </div>
-      )}
+{selectedSection === "other" && (
+  <DetailsBlock />
+)}
     </div>
   );
 }
