@@ -7,6 +7,11 @@ export function Home() {
   const [selectedActivity, setSelectedActivity] = useState(null);
   const [loadingDetails, setLoadingDetails] = useState(false);
   const [selectedSection, setSelectedSection] = useState(null);
+  const [completedActivities, setCompletedActivities] = useState(() => {
+  const stored = localStorage.getItem("completedActivities");
+  return stored ? JSON.parse(stored) : [];
+});
+
 
 
   async function openDetails(key, section) {
@@ -90,9 +95,31 @@ export function Home() {
   );
 }
 
+function toggleCompleted(key) {
+  setCompletedActivities(prev => {
+    let updated;
+
+    if (prev.includes(key)) {
+      updated = prev.filter(k => k !== key);
+    } else {
+      updated = [...prev, key];
+    }
+
+    localStorage.setItem(
+      "completedActivities",
+      JSON.stringify(updated)
+    );
+
+    return updated;
+  });
+}
+
+
 
   function ActivityCard({ atividade, section }) {
   const isClickable = Boolean(atividade.key);
+  const isCompleted = completedActivities.includes(atividade.key);
+
 
   return (
     <div
@@ -121,28 +148,29 @@ export function Home() {
 
         <div className="btn_container">
           <button
-            className="button-comic"
-            onClick={(e) => {
-              e.stopPropagation();
-              console.log("Marcar como feita:", atividade.key);
-            }}
+              className={`button-comic ${isCompleted ? "completed" : ""}`}
+              onClick={(e) => {
+                e.stopPropagation();
+                toggleCompleted(atividade.key);
+              }}
           >
-            Marcar como Feita
+            {isCompleted ? "Feita!" : "Marcar como Feita"}
           </button>
+
         </div>
       </div>
     </div>
   );
-}
+  }
 
 
   return (
-    <div className="content_container">
+      <div className="content_container">
 
-      {/* Imagem Hero */}
-      <div className="image-hero">
-        <div className="text-hero">
-          <h1 className="text-size-big-Rantaro">Dailio</h1>
+        {/* Imagem Hero */}
+        <div className="image-hero">
+          <div className="text-hero">
+            <h1 className="text-size-big-Rantaro">Dailio</h1>
           <h1 className="text-size-small-Rantaro">
             a tua dose diária de entretenimento!!!
           </h1>
