@@ -1,99 +1,138 @@
 import '../styles/information.css';
 import { useEffect, useState } from 'react';
 import { useNavigate } from "react-router-dom";
-export function InformationPage() {
+import api from "../api/client";
 
+
+export function InformationPage() {
     const navigate = useNavigate();
 
-    //dados do utilizador a mais tarde vir do login
-    const [user, setUser] = useState({
-        email: "loading...",
-        nome: "loading...",
-        foto: null,
-        localizacao: "loading...",
+    const [profile, setProfile] = useState({
+        email: "",
+        displayName: "",
+        photoUrl: null
     });
-    const [prefs, setPrefs] = useState(null);
-    // Quando houver login
-    useEffect(() => {
-        const saveUser = localStorage.getItem("user");
-        const savePrefs = localStorage.getItem("preferences");
 
-        if (saveUser) setUser(JSON.parse(saveUser));
-        if (savePrefs) setPrefs(JSON.parse(savePrefs));
-    }, []);
+    const [loading, setLoading] = useState(true);
+
+    useEffect(() => {
+    async function loadProfile() {
+        //  Carrega localStorage
+        const storedUser = localStorage.getItem("user");
+        if (storedUser) {
+            const user = JSON.parse(storedUser);
+            setProfile({
+                email: user.email || "",
+                displayName: user.nome || "",
+                photoUrl: user.foto || null
+            });
+        }
+
+        // Busca dados atualizados na API tenta so,, nao busca
+        try {
+            const response = await api.get("/users/profile");
+            const data = response.data;
+
+            setProfile({
+                email: data.email || "",
+                displayName: data.displayName || "",
+                photoUrl: data.photoUrl || null
+            });
+        } catch (error) {
+            console.error("Erro ao carregar perfil:", error);
+        } finally {
+            setLoading(false);
+        }
+    }
+    loadProfile();
+}, []);
+
+    if (loading) {
+        return <div className="info_">A carregar...</div>;
+    }
 
     return (
         <div className="info_">
-            {/* informacao*/}
             <section className="info_c">
                 <h1>Informações</h1>
 
                 <div className="info_p">
                     <h3>Email</h3>
-                    <p>{user.email}</p>
+                    <p>{profile.email}</p>
                 </div>
 
                 <div className="info_p">
                     <h3>Nome</h3>
-                    <p>{user.nome}</p>
+                    <p>{profile.displayName}</p>
                 </div>
 
                 <div className="info_p">
                     <h3>Imagem de Perfil</h3>
                     <div className="profile_pic">
-                        <img src={user.foto} alt="perfil" />
+                        {profile.photoUrl && (<img src={profile.photoUrl} alt="perfil" />)}
                     </div>
                 </div>
-                {prefs && (
-                    <div className="info_p">
-                        <h3>Preferências</h3>
-                        <p>Tipos: {prefs.types.join(", ")}</p>
-                        <p>Atividades por dia: {prefs.daily}</p>
-                        <p>Localização: {prefs.location}</p>
-                    </div>)}
 
-                <button className="edit_btn" onClick={() => navigate("/informacao/editar")}>Editar Perfil</button>
+                <button
+                    className="edit_btn"
+                    onClick={() => navigate("/informacao/editar")}>Editar Perfil</button>
             </section>
         </div>
     );
 }
 
+/*EDITAR PERFIL */
 export function InformationEditPage() {
+
+    const navigate = useNavigate();
 
     const [form, setForm] = useState({
         email: "",
-        nome: "",
-        imagem: "",
-        localizacao: ""
+        displayName: "",
+        photoUrl: ""
     });
+
+    const [loading, setLoading] = useState(true);
+
+    useEffect(() => {
+        async function loadProfile() {
+            try {
+                const response = await api.get("/users/profile");
+                const data = response.data;
+
+                setForm({
+                    email: data.email || "",
+                    displayName: data.displayName || "",
+                    photoUrl: data.photoUrl || ""
+                });
+            } catch (error) {
+                console.error("Erro ao carregar perfil:", error);
+            } finally {
+                setLoading(false);
+            }
+        }
+        loadProfile();
+    }, []);
 
     async function SaveInfo() {
         try {
-            const user = localStorage.getItem("user");
-
-            const response = await fetch("api/users/profile", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                    // Authorization: `${token}`,
-                },
-                body: JSON.stringify(form),
+            await api.post("/users/profile", {
+                displayName: form.displayName,
+                photoUrl: form.photoUrl
             });
 
-            if (!response.ok) throw new Error("Erro");
-
-            const updatedUser = await response.json();
-
-            localStorage.setItem("user", JSON.stringify(updatedUser));
-            console.log(user)
+            navigate("/informacao");
+        } catch (error) {
+            console.error("Erro atualizar perfil:", error);
         }
-        catch{console.error();
-        }
+    }
+
+    if (loading) {
+        return <div className="info_edit_">A carregar...</div>;
     }
 
     return (
         <div className="info_edit_">
-
             <section className="info_edit_c">
                 <h1>Atualizar Informações</h1>
 
@@ -102,10 +141,7 @@ export function InformationEditPage() {
                     <input
                         type="email"
                         className="edit_input"
-                        placeholder="Novo email"
-                        value={form.email}
-                        onChange={(e) => setForm({ ...form, email: e.target.value })}
-                    />
+                        value={form.email} disabled/>
                 </div>
 
                 <div className="edit_p">
@@ -113,20 +149,8 @@ export function InformationEditPage() {
                     <input
                         type="text"
                         className="edit_input"
-                        placeholder="Novo nome de utilizador"
-                        value={form.nome}
-                        onChange={(e) => setForm({ ...form, nome: e.target.value })}
-                    />
-                </div>
-
-                <div className="edit_p">
-                    <h3>Localização</h3>
-                    <input
-                        type="text"
-                        className="edit_input"
-                        placeholder="Distrito ou Ilha"
-                        value={form.localizacao}
-                        onChange={(e) => setForm({ ...form, localizacao: e.target.value })}
+                        value={form.displayName}
+                        onChange={(e) => setForm({ ...form, displayName: e.target.value })}
                     />
                 </div>
 
@@ -135,10 +159,8 @@ export function InformationEditPage() {
                     <input
                         type="text"
                         className="edit_input"
-                        placeholder="URL da nova imagem"
-                        value={form.imagem}
-                        onChange={(e) => setForm({ ...form, imagem: e.target.value })}
-                    />
+                        value={form.photoUrl}
+                        onChange={(e) => setForm({ ...form, photoUrl: e.target.value })}/>
                 </div>
 
                 <button className="save_btn" onClick={SaveInfo}>Salvar</button>
