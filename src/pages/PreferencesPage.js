@@ -1,18 +1,26 @@
 import '../styles/preferences.css';
 import { useEffect, useState } from "react";
+import api, { setAuthToken } from "../api/client";
+import { useNavigate } from "react-router-dom";
 
 export function PreferencesPage() {
     const [min, setMin] = useState(1);
     const [max, setMax] = useState(3);
     const [daily, setDaily] = useState(1);
-    //apis
+    
+    // TIPOS DE ATIVIDADE
     const [types, setTypes] = useState([]);
-    const [capitals, setCapitals] = useState([]);
+
+    // LOCALIZAÇÃO
+    const [capitals, setCapitals] = useState({});
     const [location, setLocation] = useState("");
+
+    // permitir mudar de página
+    const navigate = useNavigate();
 
     //dados do utilizador a mais tarde vir do login
     const [user, setUser] = useState({
-        id: "loading...",
+        uid: "loading...",
         email: "loading...",
         nome: "username",
         foto: null,
@@ -21,20 +29,29 @@ export function PreferencesPage() {
 
     // Quando houver login
     useEffect(() => {
-        const saveUser = localStorage.getItem("user");
-        if (saveUser) {
-            setUser(JSON.parse(saveUser));
+    const savedUser = localStorage.getItem("user");
+    console.log("RAW localStorage user:", savedUser);
+
+    if (savedUser) {
+        const parsedUser = JSON.parse(savedUser);
+        setUser(parsedUser);
+
+        // reaplicar token ao Axios
+        if (parsedUser.token) {
+        setAuthToken(parsedUser.token);
         }
+        console.log("Axios Authorization header AFTER setAuthToken:",api.defaults.headers.common["Authorization"]
+  );
+    }
     }, []);
 
-    console.log(user.id)
+    console.log(user.uid)
 
     useEffect(() => {
         async function loadCapitals() {
             try {
-                const res = await fetch("/api/weather/capitals");
-                const data = await res.json();
-                setCapitals(data);
+                const res = await api.get("/weather/districts");
+                setCapitals(res.data);
             } catch (err) {
                 console.error("Erro ao carregar capitais", err);
             }
@@ -47,23 +64,49 @@ export function PreferencesPage() {
     }
 
     async function savePreferences() {
-        const preferences = { types, participants: { min, max }, daily, location };
+        try {
+            const storedUser = JSON.parse(localStorage.getItem("user"));
 
-        const response = await fetch("/api/users/" + user.id + "/preferences", {
-            method: "PUT",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(preferences)
-        });
-        if (!response.ok){
-            throw new Error("Nao foi possivel salvar")
+            if (!storedUser?.token) {
+            alert("Sessão inválida. Faça login novamente.");
+            return;
+            }
+
+            // Garantir o token no momento do request
+            setAuthToken(storedUser.token);
+
+            const payload = {
+            globalIdLocal: storedUser.uid,
+            preferences: {
+                dailyActivities: daily,
+                minParticipants: min,
+                maxParticipants: max,
+                education: types.includes("education"),
+                recreational: types.includes("recreational"),
+                social: types.includes("social"),
+                charity: types.includes("charity"),
+                cooking: types.includes("cooking"),
+                relaxation: types.includes("relaxation"),
+                busywork: types.includes("work")
+            },
+            difficulty: {
+                easy: true,
+                medium: false,
+                hard: false
+            }
+            };
+
+            await api.put(`/users/${storedUser.uid}/preferences`, payload);
+
+            localStorage.setItem("preferencesSaved", "true");
+            alert("Preferências guardadas com sucesso!");
+            // mandar o user para a página inicial
+            navigate("/");
+        } catch (err) {
+            console.error("SAVE PREF ERROR:", err.response?.data || err);
+            alert("Sessão expirada. Faça login novamente.");
         }
-
-        return await response.json()
-
-        //guarda na localstorage
-        localStorage.setItem("preferences", JSON.stringify(preferences));
-        alert("Preferências guardadas com sucesso");
-    }
+        }
 
     function inMin() {
         if (min < max) setMin(min + 1);
@@ -126,13 +169,15 @@ export function PreferencesPage() {
                 <select className="pref-select" value={location} onChange={e => setLocation(e.target.value)}>
                     <option value="">Selecionar cidade</option>
 
-                    {Object.keys(capitals).map(region => (
+                    {Object.entries(capitals).map(([region, cities]) => (
                         <optgroup key={region} label={region}>
-                            {Object.values(capitals[region]).map(local => (
-                                <option key={local.idArea + local.local} value={local.local}>{local.local}</option>
+                            {Object.entries(cities).map(([code, name]) => (
+                            <option key={code} value={code}>
+                                {name}
+                            </option>
                             ))}
                         </optgroup>
-                    ))}
+                        ))}
                 </select>
             </div>
 
@@ -154,7 +199,7 @@ export function PreferencesPage() {
                     <button onClick={inDaily}>+</button>
                 </div>
             </div>
-            <button className="pref-save-btn" onClick={savePreferences}>Salvar</button>
+            <button className="pref-save-btn" onClick={savePreferences} disabled={!user.uid || user.uid === "loading..."}> Salvar </button>
         </div>
     );
 }

@@ -1,6 +1,6 @@
 import '../styles/login.css'
 import { useState } from "react";
-import { signUp } from "../components/usersApi";
+import api from "../api/client";
 
 export function RegisterPage() {
   const [email, setEmail] = useState("");
@@ -10,10 +10,15 @@ export function RegisterPage() {
     e.preventDefault();
 
     try {
-      const res = await signUp(email, password);
+      const response = await api.post("/users/sign-up", {
+        email,
+        password
+      });
+
+      const res = response.data;
       console.log("Utilizador criado:", res);
-      alert("Conta criada com sucesso!");
-      window.location.href = "#/preferencias";
+      alert("Conta criada com sucesso! Faça login para continuar.");
+      window.location.href = "#/login";
     } catch (err) {
       alert("Erro ao registar utilizador");
     }

@@ -1,6 +1,6 @@
 import '../styles/login.css'
 import { useState } from "react";
-import { signIn } from "../components/usersApi";
+import api,{ setAuthToken } from "../api/client";
 import { useNavigate } from "react-router-dom";
 
 export function LoginPage() {
@@ -19,9 +19,15 @@ export function LoginPage() {
     e.preventDefault();
 
     try {
-      const res = await signIn(email, password);
+      const response = await api.post("/users/sign-in", {
+        email,
+        password
+      });
+
+      const res = response.data;
 
       const user = {
+        uid: res.localId,
         email: res.email,
         nome: res.displayName || res.email.split("@")[0],
         localizacao: "Não definida",
@@ -29,11 +35,15 @@ export function LoginPage() {
         token: res.idToken
       };
 
-      // guarda utilizador tudo daods
+      // guarda os dados do utilizador
       localStorage.setItem("user", JSON.stringify(user));
 
+      // Para aplicar o token em próximas chamadas
+      setAuthToken(res.idToken);
+
       alert("Login efetuado com sucesso!");
-      navigate("/"); // ir página inicial
+      // ir página inicial
+      navigate("/");
 
     } catch (err) {
       alert("Email ou password incorretos");

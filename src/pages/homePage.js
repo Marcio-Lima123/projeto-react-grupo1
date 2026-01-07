@@ -1,5 +1,6 @@
 import "../styles/homepage.css";
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { fetchActivities } from "../components/api";
 
 export function Home() {
@@ -7,6 +8,8 @@ export function Home() {
   const [selectedActivity, setSelectedActivity] = useState(null);
   const [loadingDetails, setLoadingDetails] = useState(false);
   const [selectedSection, setSelectedSection] = useState(null);
+  // criar a variável que permite mudar o utilizador de página
+  const navigate = useNavigate();
 
 
   async function openDetails(key, section) {
@@ -32,12 +35,30 @@ export function Home() {
 
 
   useEffect(() => {
-    async function loadActivities() {
-      const data = await fetchActivities();
-      setActivities(data);
+    const prefsSaved = localStorage.getItem("preferencesSaved");
+    const savedUser = localStorage.getItem("user");
+
+    // Se não estiver autenticado, manda o utilizador para a página de login
+    if (!savedUser) {
+        navigate("/login");
+        return;
     }
+
+    // Se ainda não guardou preferências, manda o utilizador para a página de preferências
+    if (!prefsSaved) {
+        navigate("/preferencias");
+        return;
+    }
+
+    // Se tudo anteriormente deu certo, mostra as atividades
+    async function loadActivities() {
+        const data = await fetchActivities();
+        setActivities(data);
+    }
+
     loadActivities();
-  }, []);
+    }, [navigate]);
+
 
   // Filtros
   const dailyActivities = activities
