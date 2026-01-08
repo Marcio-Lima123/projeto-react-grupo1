@@ -16,6 +16,7 @@ export function Home() {
     return stored ? JSON.parse(stored) : [];
   });
 
+  // função para ver detalhes das atividades
   async function openDetails(key, section) {
     if (!key) return;
 
@@ -64,8 +65,6 @@ export function Home() {
         return;
     }
 
-
-    // Se tudo anteriormente deu certo, mostra as atividades
     async function loadActivities() {
         try {
             const savedUser = JSON.parse(localStorage.getItem("user"));
@@ -157,8 +156,6 @@ export function Home() {
       return updated;
     });
   }
-
-
 
   function ActivityCard({ atividade, section }) {
     const isClickable = Boolean(atividade.key);
@@ -274,7 +271,7 @@ export function Home() {
           </div>
           <div>
             <h1>Número de atividades:</h1>
-            <p><strong>{activities.daily.length + activities.recommended.length + activities.other.length} Atividades </strong></p>
+            <p><strong>{activities.daily.length + activities.recommended.length + activities.other.length} Atividades atualmente</strong></p>
           </div>
         </div>
       </div>

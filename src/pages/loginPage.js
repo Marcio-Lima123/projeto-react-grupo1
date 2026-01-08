@@ -4,13 +4,6 @@ import api,{ setAuthToken } from "../api/client";
 import { useNavigate } from "react-router-dom";
 
 export function LoginPage() {
-
-  // const handleSubmit = async (e) => {
-  //     try {
-  //         none
-  //     }
-  // }
-
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
@@ -38,10 +31,12 @@ export function LoginPage() {
       // guarda os dados do utilizador
       localStorage.setItem("user", JSON.stringify(user));
 
-      // Para aplicar o token em próximas chamadas
+      // Guarda o token aplicar o token em próximas chamadas
       setAuthToken(res.idToken);
 
+      // caso faça-se outro login, remover as preferencias locais
       localStorage.removeItem("preferencesSaved");
+      
       alert("Login efetuado com sucesso!");
       // ir página inicial
       navigate("/");

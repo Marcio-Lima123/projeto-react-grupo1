@@ -5,6 +5,7 @@ import api, { setAuthToken } from "../api/client";
 
 export function ClassificacaoPage() {
 
+  // colocar valor default caso nao encontre os users para o leaderboard
   const [ranking, setRanking] = useState([
   { uid: "", total: 0 },
   { uid: "", total: 0 },

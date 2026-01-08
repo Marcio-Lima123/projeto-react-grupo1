@@ -7,15 +7,11 @@ export function PreferencesPage() {
     const [min, setMin] = useState(1);
     const [max, setMax] = useState(3);
     const [daily, setDaily] = useState(1);
-
-    // TIPOS DE ATIVIDADE
     const [types, setTypes] = useState([]);
-
-    // LOCALIZAÇÃO
     const [capitals, setCapitals] = useState({});
     const [location, setLocation] = useState("");
 
-    // permitir mudar de página
+    // criar a variável que permite mudar o utilizador de página
     const navigate = useNavigate();
 
     //dados do utilizador a mais tarde vir do login
@@ -30,7 +26,6 @@ export function PreferencesPage() {
     // Quando houver login
     useEffect(() => {
         const savedUser = localStorage.getItem("user");
-        // console.log("RAW localStorage user:", savedUser);
 
         if (savedUser) {
             const parsedUser = JSON.parse(savedUser);
@@ -40,11 +35,8 @@ export function PreferencesPage() {
             if (parsedUser.token) {
                 setAuthToken(parsedUser.token);
             }
-            // console.log("Axios Authorization header AFTER setAuthToken:", api.defaults.headers.common["Authorization"]);
         }
     }, []);
-
-    // console.log(user.uid)
 
     useEffect(() => {
         async function loadCapitals() {
@@ -96,9 +88,11 @@ export function PreferencesPage() {
             };
 
             await api.put(`/users/${storedUser.uid}/preferences`, payload);
-
+            
+            // de forma a impedir do utilizador ser enviado para o preferences quando estiver na homepage
             localStorage.setItem("preferencesSaved", "true");
             alert("Preferências guardadas com sucesso!");
+
             // mandar o user para a página inicial
             navigate("/");
         } catch (err) {
